@@ -322,8 +322,8 @@ footer .container { display: flex; justify-content: space-between; flex-wrap: wr
     + "</div></div></header>";
 
   /* research */
-  html += '<section class="section" id="research"><div class="container">'
-    + '<div class="section-head"><h2>Research</h2><p class="lede">' + S.research.lede + "</p></div>";
+    html += '<section class="section" id="research"><div class="container">'
+    + '<div class="section-head"><h2>Research</h2></div>';
   S.research.projects.forEach(function (p) {
     html += '<article class="project' + (p.layout === "tall" ? " fig-tall" : "") + '">'
       + '<header class="project-head"><div class="eyebrow">' + p.eyebrow.map(function (e) { return "<span>" + e + "</span>"; }).join("") + "</div><h3>" + p.title + "</h3></header>";
