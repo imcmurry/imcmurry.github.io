@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ian W. McMurry</title>
+<meta name="description" content="Ian W. McMurry is a data scientist and researcher working on Bayesian hierarchical modeling and representation learning. First author of a WASSA 2026 paper on measuring social atmosphere from hostel reviews; M.S. Analytics, Georgia Tech.">
+<meta name="author" content="Ian W. McMurry">
+<meta property="og:title" content="Ian W. McMurry">
+<meta property="og:description" content="Data scientist and researcher. Bayesian hierarchical modeling, NLP, and representation learning.">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ian W. McMurry",
+  "givenName": "Ian",
+  "familyName": "McMurry",
+  "email": "mailto:ian.mcmurry01@gmail.com",
+  "jobTitle": "Data scientist and researcher",
+  "affiliation": {"@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology"},
+  "alumniOf": {"@type": "CollegeOrUniversity", "name": "Emory University"},
+  "sameAs": ["https://www.linkedin.com/in/ian-mcmurry", "https://github.com/imcmurry"],
+  "knowsAbout": ["Bayesian hierarchical modeling", "Natural language processing", "Representation learning", "Statistical machine learning"]
+}
+</script>
+<style>
+/* ---------- tokens ---------- */
+:root {
+  --paper: #ffffff;
+  --ink: #17202d;
+  --ink-2: #5d6779;
+  --ink-3: #8a93a3;
+  --accent: #1f3a5f;
+  --accent-soft: #e9eef6;
+  --rule: #dde3ec;
+  --tint: #f5f7fa;
+  --link: #1f3a5f;
+  --focus: #3b6fb6;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --sans: "Source Sans 3", "Helvetica Neue", Arial, system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0f151e;
+    --ink: #e7ebf2;
+    --ink-2: #a3adbe;
+    --ink-3: #6f7a8c;
+    --accent: #a9c4e8;
+    --accent-soft: #1a2536;
+    --rule: #263040;
+    --tint: #151c27;
+    --link: #a9c4e8;
+    --focus: #8fb3e0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0f151e;
+  --ink: #e7ebf2;
+  --ink-2: #a3adbe;
+  --ink-3: #6f7a8c;
+  --accent: #a9c4e8;
+  --accent-soft: #1a2536;
+  --rule: #263040;
+  --tint: #151c27;
+  --link: #a9c4e8;
+  --focus: #8fb3e0;
+  color-scheme: dark;
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--link); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.16em; text-decoration-color: color-mix(in srgb, var(--link) 45%, transparent); }
+a:hover { text-decoration-color: var(--link); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+p + p { margin-top: 0.9em; }
+strong { font-weight: 600; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+.measure { max-width: 66ch; }
+.small-caps { font-family: var(--sans); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-2); }
+.num { font-variant-numeric: tabular-nums; }
+
+/* ---------- nav ---------- */
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+}
+.nav .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 56px; flex-wrap: wrap; }
+.nav .brand { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; flex-wrap: wrap; }
+.nav ul a { font-size: 0.86rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-2); text-decoration: none; padding: 6px 0; }
+.nav ul a:hover { color: var(--ink); }
+
+/* ---------- intro ---------- */
+.intro { padding: 64px 0 56px; }
+.intro .grid { display: grid; grid-template-columns: minmax(0, 1fr) 224px; gap: 48px; align-items: start; }
+.intro h1 { font-size: clamp(2.2rem, 4.5vw, 3rem); letter-spacing: -0.01em; }
+.intro .tagline { font-family: var(--serif); font-size: 1.32rem; font-weight: 400; color: var(--ink-2); margin-top: 10px; line-height: 1.35; }
+.intro .interests { margin-top: 18px; color: var(--ink-2); font-size: 0.98rem; }
+.intro .interests span + span::before { content: "·"; margin: 0 0.5em; color: var(--ink-3); }
+.intro .bio { margin-top: 26px; font-size: 1.06rem; }
+.intro .links { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; }
+.intro .links a { font-size: 0.95rem; font-weight: 500; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border: 1px solid var(--accent); border-radius: 3px;
+  color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.01em;
+  background: transparent;
+}
+.btn:hover { background: var(--accent-soft); }
+.btn.primary { background: var(--accent); color: var(--paper); }
+.btn.primary:hover { filter: brightness(1.12); }
+.btn svg { width: 15px; height: 15px; flex: none; }
+.docs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.headshot { width: 224px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 30%; border-radius: 4px; display: block; }
+.headshot-wrap { display: flex; flex-direction: column; gap: 10px; }
+.headshot-wrap .caption { font-size: 0.85rem; color: var(--ink-2); line-height: 1.4; }
+
+/* ---------- sections ---------- */
+.section { padding: 48px 0; border-top: 1px solid var(--rule); }
+.section-head { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 32px; align-items: baseline; margin-bottom: 30px; }
+.section-head h2 { font-size: 1.55rem; }
+.section-head .lede { color: var(--ink-2); font-size: 1rem; max-width: 60ch; }
+@media (max-width: 760px) { .section-head { grid-template-columns: 1fr; gap: 8px; } }
+
+/* research entries */
+.project {
+  display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 26px 44px; padding: 34px 0; border-top: 1px dashed var(--rule);
+  grid-template-areas: "head head" "fig fig" "body figs";
+}
+.project:first-of-type { border-top: 0; padding-top: 0; }
+.project.fig-tall { grid-template-columns: minmax(0, 1fr) 450px; gap: 26px 40px; grid-template-areas: "head head" "body fig" "figs figs"; }
+.project-head { grid-area: head; }
+.project .body { grid-area: body; max-width: 62ch; }
+.project .fig { grid-area: fig; }
+.project .figures { grid-area: figs; }
+.project h3 { font-size: 1.32rem; margin-bottom: 4px; }
+.project .eyebrow { display: flex; flex-wrap: wrap; gap: 6px 0; margin-bottom: 12px; }
+.project .eyebrow span { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.project .eyebrow span + span::before { content: "·"; margin: 0 0.55em; color: var(--ink-3); }
+.project .body p.frame { color: var(--ink-2); font-style: italic; font-family: var(--serif); font-size: 1.05rem; }
+.project .links { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 0.93rem; font-weight: 500; }
+.fig { margin: 0; align-self: start; }
+.fig img { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--rule); border-radius: 3px; padding: 8px; }
+.fig figcaption { font-size: 0.85rem; color: var(--ink-2); line-height: 1.45; margin-top: 8px; max-width: 80ch; }
+.fig figcaption .fno { font-weight: 600; color: var(--ink); }
+.sw { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: 0; margin: 0 2px 0 1px; }
+.sw.navy { background: #1f3a5f; } .sw.gold { background: #b88f29; }
+.figures { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; align-content: start; padding-top: 6px; }
+.fig-tall .figures { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 6px; }
+.figures li { display: grid; gap: 2px; padding-left: 14px; border-left: 2px solid var(--accent-soft); }
+.figures .value { font-family: var(--serif); font-size: 1.55rem; font-weight: 600; line-height: 1.1; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.figures .value small { font-size: 0.95rem; font-weight: 400; color: var(--ink-2); font-family: var(--sans); margin-left: 4px; }
+.figures .label { font-size: 0.86rem; color: var(--ink-2); line-height: 1.4; }
+
+/* publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.pubs li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 20px; }
+.pubs .year { font-family: var(--serif); font-size: 1.05rem; color: var(--ink-2); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.pubs .title { font-weight: 600; }
+.pubs .venue { color: var(--ink-2); font-size: 0.97rem; margin-top: 2px; }
+.pubs .venue em { font-style: italic; }
+.pubs .pl { margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.9rem; font-weight: 500; }
+.pubs .kind { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
+
+/* experience: a timeline spine with a dot per role */
+.thread { max-width: 66ch; font-size: 1.06rem; margin-bottom: 36px; }
+.roles { list-style: none; margin: 0; padding: 0; display: grid; gap: 30px; }
+.roles > li { position: relative; display: grid; grid-template-columns: 184px 32px minmax(0, 1fr); grid-template-areas: "when mark body"; gap: 0; }
+.roles > li:not(:last-child)::after { content: ""; position: absolute; left: 199px; top: 16px; bottom: -30px; width: 2px; background: var(--rule); }
+.roles .when { grid-area: when; padding-right: 16px; color: var(--ink-2); font-size: 0.92rem; line-height: 1.45; padding-top: 3px; font-variant-numeric: tabular-nums; }
+.roles .when .place { display: block; color: var(--ink-3); }
+.roles .mark { grid-area: mark; justify-self: center; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--accent); background: var(--paper); margin-top: 7px; position: relative; z-index: 1; }
+.roles .mark.current { background: var(--accent); }
+.roles .rbody { grid-area: body; min-width: 0; }
+.roles h3 { font-size: 1.12rem; font-family: var(--sans); font-weight: 600; }
+.roles .org { color: var(--ink-2); font-size: 0.98rem; margin-bottom: 6px; }
+.roles p.desc { max-width: 64ch; font-size: 0.99rem; }
+.billets { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 20px; }
+.billets li { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 3px; }
+.billets li::before { content: ""; position: absolute; left: -20px; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--paper); border: 2px solid var(--accent); opacity: 0.55; z-index: 1; }
+.billets .bwhen { font-size: 0.85rem; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.billets h4 { margin: 0; font-family: var(--sans); font-weight: 600; font-size: 1.02rem; line-height: 1.3; }
+.billets p.desc { margin-top: 4px; }
+.content-error { margin: 40px auto; max-width: 60ch; padding: 16px 20px; border: 1px solid #c0392b; border-radius: 4px; color: #c0392b; font-size: 0.95rem; }
+
+/* education + skills */
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
+.edu { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+.edu h3 { font-size: 1.08rem; font-family: var(--sans); font-weight: 600; }
+.edu .deg { color: var(--ink-2); font-size: 0.97rem; }
+.edu .meta { color: var(--ink-3); font-size: 0.88rem; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.edu .courses { font-size: 0.92rem; color: var(--ink-2); margin-top: 6px; max-width: 48ch; }
+.skills { display: grid; gap: 14px; }
+.skills dt { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 4px; }
+.skills dd { margin: 0; font-size: 0.97rem; }
+.skills dl { margin: 0; }
+.col-title { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); }
+
+/* background + contact */
+.background .body { max-width: 66ch; }
+.contact .body { max-width: 62ch; }
+.contact .ways { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 8px; font-size: 1rem; }
+.contact .ways li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+.contact .ways .k { color: var(--ink-2); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding-top: 3px; }
+
+footer { border-top: 1px solid var(--rule); padding: 26px 0 40px; color: var(--ink-3); font-size: 0.86rem; }
+footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .intro .grid { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .intro .grid .headshot-wrap { order: -1; }
+  .headshot { width: 168px; }
+  .project, .project.fig-tall { grid-template-columns: minmax(0, 1fr); gap: 20px; grid-template-areas: "head" "fig" "body" "figs"; }
+  .figures, .fig-tall .figures { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+  .project.fig-tall .fig img { max-width: 420px; margin: 0 auto; }
+  .roles > li { grid-template-columns: 28px minmax(0, 1fr); grid-template-areas: "mark when" ". body"; }
+  .roles > li:not(:last-child)::after { left: 13px; }
+  .roles .when { padding-right: 0; padding-top: 4px; margin-bottom: 4px; }
+  .roles .when .place { display: inline; }
+  .roles .when .place::before { content: " · "; }
+  .billets li::before { left: -18px; }
+  .two-col { grid-template-columns: 1fr; gap: 40px; }
+}
+@media (max-width: 640px) {
+  .nav .container { flex-direction: column; align-items: flex-start; gap: 0; padding-top: 10px; padding-bottom: 6px; }
+  .nav ul { flex-wrap: nowrap; overflow-x: auto; width: 100%; gap: 18px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav ul::-webkit-scrollbar { display: none; }
+  .nav ul a { white-space: nowrap; font-size: 0.8rem; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .container { padding: 0 20px; }
+  .intro { padding: 40px 0 40px; }
+  .pubs li { grid-template-columns: 1fr; gap: 2px; }
+  .contact .ways li { grid-template-columns: 1fr; gap: 0; }
+}
+
+/* ---------- print ---------- */
+@media print {
+  .nav, .docs, footer { display: none; }
+  body { font-size: 11pt; color: #000; background: #fff; }
+  a { color: #000; text-decoration: none; }
+  .section { padding: 20px 0; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <div class="container">
+    <a class="brand" href="#top">Ian W. McMurry</a>
+    <ul>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#background">Background</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Everything inside <main> is generated from content.js. Edit the text there, not here. -->
+<main id="top"></main>
+
+<footer>
+  <div class="container" id="footer"></div>
+</footer>
+
+<script src="content.js"></script>
+<script>
+(function () {
+  var S = window.SITE;
+  var main = document.getElementById("top");
+  if (!S) {
+    main.innerHTML = '<div class="content-error">content.js did not load or has a syntax error (usually a missing backtick, comma, or bracket). Open the browser console for the exact line.</div>';
+    return;
+  }
+  var dl = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M5 7l3 3 3-3M3 12.5h10"/></svg>';
+  function links(list, cls) {
+    if (!list || !list.length) return "";
+    return '<div class="' + cls + '">' + list.map(function (l) { return '<a href="' + l.href + '">' + l.label + '</a>'; }).join("") + "</div>";
+  }
+  function paras(list, cls) {
+    return list.map(function (p) { return "<p" + (cls ? ' class="' + cls + '"' : "") + ">" + p + "</p>"; }).join("");
+  }
+
+  var html = "";
+
+  /* header */
+  html += '<header class="intro"><div class="container"><div class="grid"><div>'
+    + "<h1>" + S.name + "</h1>"
+    + '<p class="tagline">' + S.tagline + "</p>"
+    + '<p class="interests">' + S.interests.map(function (i) { return "<span>" + i + "</span>"; }).join("") + "</p>"
+    + '<div class="bio measure">' + paras(S.bio) + "</div>"
+    + links(S.links, "links")
+    + '<div class="docs">' + S.documents.map(function (d) { return '<a class="btn' + (d.primary ? " primary" : "") + '" href="' + d.href + '">' + dl + d.label + "</a>"; }).join("") + "</div>"
+    + "</div>"
+    + '<div class="headshot-wrap"><img class="headshot" src="' + S.headshot.src + '" alt="' + S.headshot.alt + '"><p class="caption">' + S.headshot.caption + "</p></div>"
+    + "</div></div></header>";
+
+  /* research */
+  html += '<section class="section" id="research"><div class="container">'
+    + '<div class="section-head"><h2>Research</h2><p class="lede">' + S.research.lede + "</p></div>";
+  S.research.projects.forEach(function (p) {
+    html += '<article class="project' + (p.layout === "tall" ? " fig-tall" : "") + '">'
+      + '<header class="project-head"><div class="eyebrow">' + p.eyebrow.map(function (e) { return "<span>" + e + "</span>"; }).join("") + "</div><h3>" + p.title + "</h3></header>";
+    if (p.figure) {
+      html += '<figure class="fig"><img src="' + p.figure.src + '" alt="' + p.figure.alt + '" loading="lazy"><figcaption>' + p.figure.caption + "</figcaption></figure>";
+    }
+    html += '<div class="body">' + (p.frame ? '<p class="frame">' + p.frame + "</p>" : "") + paras(p.paragraphs) + links(p.links, "links") + "</div>";
+    if (p.figures && p.figures.length) {
+      html += '<ul class="figures" aria-label="Key figures">' + p.figures.map(function (f) {
+        return '<li><span class="value">' + f.value + (f.unit ? "<small>" + f.unit + "</small>" : "") + '</span><span class="label">' + f.label + "</span></li>";
+      }).join("") + "</ul>";
+    }
+    html += "</article>";
+  });
+  html += "</div></section>";
+
+  /* publications */
+  html += '<section class="section" id="publications"><div class="container">'
+    + '<div class="section-head"><h2>Publications &amp; talks</h2></div><ul class="pubs">';
+  S.publications.forEach(function (p) {
+    html += '<li><span class="year">' + p.year + "</span><div>"
+      + '<div class="kind">' + p.kind + "</div>"
+      + '<div class="title">' + p.title + "</div>"
+      + '<div class="venue">' + p.venue + "</div>"
+      + links(p.links, "pl") + "</div></li>";
+  });
+  html += "</ul></div></section>";
+
+  /* experience */
+  html += '<section class="section" id="experience"><div class="container">'
+    + '<div class="section-head"><h2>Experience</h2></div>'
+    + (S.experience.intro ? '<p class="thread">' + S.experience.intro + "</p>" : "")
+    + '<ol class="roles">';
+  S.experience.roles.forEach(function (r) {
+    html += '<li><div class="when">' + r.when + (r.place ? '<span class="place">' + r.place + "</span>" : "") + "</div>"
+      + '<span class="mark' + (r.current ? " current" : "") + '" aria-hidden="true"></span>'
+      + '<div class="rbody"><h3>' + r.title + "</h3>"
+      + (r.org ? '<div class="org">' + r.org + "</div>" : "")
+      + (r.desc ? '<p class="desc">' + r.desc + "</p>" : "");
+    if (r.billets && r.billets.length) {
+      html += '<ol class="billets">' + r.billets.map(function (b) {
+        return "<li>" + '<div class="bwhen">' + b.when + "</div><div><h4>" + b.title + '</h4><p class="desc">' + b.desc + "</p></div></li>";
+      }).join("") + "</ol>";
+    }
+    html += "</div></li>";
+  });
+  html += "</ol></div></section>";
+
+  /* education + skills */
+  html += '<section class="section" id="education"><div class="container">'
+    + '<div class="section-head"><h2>Education &amp; skills</h2></div><div class="two-col">'
+    + '<div><div class="col-title">Education</div><ul class="edu">'
+    + S.education.map(function (e) {
+      return "<li><h3>" + e.school + '</h3><div class="deg">' + e.degree + '</div><div class="meta">' + e.meta + "</div>" + (e.courses ? '<p class="courses">' + e.courses + "</p>" : "") + "</li>";
+    }).join("") + "</ul></div>"
+    + '<div><div class="col-title">Skills</div><div class="skills">'
+    + S.skills.map(function (s) { return "<dl><dt>" + s.group + "</dt><dd>" + s.items + "</dd></dl>"; }).join("")
+    + "</div></div></div></div></section>";
+
+  /* background */
+  html += '<section class="section background" id="background"><div class="container">'
+    + '<div class="section-head"><h2>Background</h2></div><div class="body">' + paras(S.background) + "</div></div></section>";
+
+  /* contact */
+  html += '<section class="section contact" id="contact"><div class="container">'
+    + '<div class="section-head"><h2>Contact</h2></div><div class="body"><p>' + S.contact.text + "</p>"
+    + '<ul class="ways">' + S.contact.ways.map(function (w) { return '<li><span class="k">' + w.key + "</span><span>" + w.html + "</span></li>"; }).join("") + "</ul>"
+    + "</div></div></section>";
+
+  main.innerHTML = html;
+  document.getElementById("footer").innerHTML = "<span>" + S.footer.left + "</span><span>" + S.footer.right + "</span>";
+})();
+</script>
+</body>
+</html>
