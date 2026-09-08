@@ -10,7 +10,7 @@ window.SITE = {
   interests: [`Bayesian hierarchical modeling`, `Statistical machine learning`, `Representation learning`],
   bio: [
     `I'm completing an M.S. in Analytics at Georgia Tech on the Computational Data Analytics track. I'm especially interested in problems where the outcome people actually care about is not directly observed. My work uses statistical modeling, machine learning, and unconventional data to recover those signals and turn them into meaningful measures that can be tested, compared, and used. That has meant building a domain-specific transformer pipeline to quantify social atmosphere across 162,840 hostel reviews, published at WASSA 2026 (ACL), and estimating composition-adjusted rental yields from unpaired housing listings with a hierarchical Bayesian model.`,
-    `Alongside the research I serve as an active-duty U.S. Marine Corps logistics officer in Okinawa, Japan, and consult as an analytics engineer for S10 Consulting, where I design data pipelines and LLM-assisted extraction workflows for recurring clients.`,
+    `Alongside the research I serve as an active-duty U.S. Marine Corps supply and logistics officer in Okinawa, Japan, and consult as an analytics engineer for S10 Consulting, where I design data pipelines and LLM-assisted extraction workflows for recurring clients.`,
   ],
   headshot: { src: `assets/headshot.jpg`, alt: `Portrait of Ian W. McMurry`, caption: `Georgia Tech &middot; Okinawa, Japan` },
   links: [
@@ -26,7 +26,6 @@ window.SITE = {
 
   /* ---------- Research ---------- */
   research: {
-    lede: `Statistics and machine learning applied to unconventional data.`,
     projects: [
       {
         eyebrow: [`NLP`, `Representation learning`, `2024 to present`],
@@ -76,8 +75,8 @@ window.SITE = {
         ],
       },
       {
-        eyebrow: [`Applied analytics`, `Industry collaboration`, `2026`],
-        title: `Beyond ratings: guest-experience analytics for Mad Monkey Hostels`,
+        eyebrow: [`Applied machine learning`, `Industry research partnership`, `2026`],
+        title: `Beyond ratings: building Guest Experience Intelligence for Mad Monkey Hostels`,
         layout: `wide`,
         figure: {
           src: `assets/fig-madmonkey.webp`,
@@ -86,7 +85,7 @@ window.SITE = {
         },
         frame: `What happens when one of Southeast Asia's leading hostel operators wants to manage guest experience using measures that did not exist a year ago.`,
         paragraphs: [
-          `I developed the collaboration directly with Mad Monkey's leadership and am using the Georgia Tech Applied Analytics Practicum as the academic framework for a broader applied research project. Mad Monkey is a leading hostel operator in Southeast Asia and now spans 25+ destinations; the initial analysis covers the 14 properties represented in my research corpus. I am extending the published socialness pipeline into an operational guest-experience intelligence system: benchmarking each property against non-Mad-Monkey hostels in the same city (global comparisons reward geography, not management), controlling the false discovery rate across comparisons, and modeling how experience labels relate to guest ratings and review frequency using city and platform fixed effects with standard errors clustered by property. The analysis also separates high-quality social experience from "chaotic social" reviews, where strong social atmosphere appears alongside dirty or negative signals, turning an abstract experience measure into something management can diagnose and act on.`,
+          `I am working directly with the COO and CTO of Mad Monkey Hostels, one of Asia's largest hostel operators, in an applied research partnership that is bringing my published machine-learning research into operational use. The project extends the transformer pipeline from measuring social atmosphere into a broader Guest Experience Intelligence system: continuously converting unstructured guest reviews into property-level signals on social experience, cleanliness, sentiment, and operational complaints. For property managers, those signals are designed to show what guests are experiencing, what is changing, where problems are emerging, and how a hostel compares with its local market. At the corporate level, the same system is designed to connect guest-experience signals with occupancy, ADR, F&B, events, and other internal data to understand which parts of the experience are associated with commercial performance and where operational investment may create the most value.`,
         ],
         links: [
           { label: `Report (PDF)`, href: `files/McMurry_2026_Mad_Monkey_Beyond_Ratings.pdf` },
@@ -94,7 +93,7 @@ window.SITE = {
         figures: [
           { value: `53.2`, unit: `% vs. 21.4%`, label: `share of Mad Monkey reviews classified social, against the market-wide rate` },
           { value: `14 of 14`, unit: ``, label: `properties show positive, statistically significant social lift over same-city competitors` },
-          { value: `+0.30`, unit: ``, label: `points on a 10-point rating associated with a social review, after controls; a dirty review costs 0.97` },
+          { value: `+0.30`, unit: ``, label: `points on a 10-point rating associated with a social review, after controls.` },
         ],
       },
     ],
@@ -141,7 +140,7 @@ window.SITE = {
 
   /* ---------- Experience (newest first) ---------- */
   experience: {
-    intro: `I studied finance and information systems at Emory before commissioning as an officer in the U.S. Marine Corps. Since then, my work has developed along two parallel tracks: logistics and operations roles of increasing responsibility in the Marine Corps, and graduate study, research, and consulting in statistics, machine learning, and data engineering. Each has built a different part of how I work. The data side is where I developed the modeling and engineering; the Marine Corps is where I learned to lead people, make decisions under constraint, and plan and execute operations at a scale I would not otherwise have encountered this early.`,
+    intro: `I studied finance and information systems at Emory University before commissioning as an officer in the U.S. Marine Corps. Since then, my work has developed along two parallel tracks: logistics and operations roles of increasing responsibility in the Marine Corps, and graduate study, research, and consulting in statistics, machine learning, and data engineering. Each has built a different part of how I work. The data side is where I learned to turn ambiguous questions into measurable problems, develop statistical and machine-learning models, and build the engineering needed to make them work at scale; the Marine Corps is where I learned to lead people, make decisions under constraint, and plan and execute complex operations.`,
     roles: [
       {
         when: `June 2025 to present`,
@@ -155,13 +154,13 @@ window.SITE = {
         when: `July 2023 to present`,
         place: `Okinawa, Japan, and the Republic of Korea`,
         current: true,
-        title: `Logistics Officer`,
+        title: `Supply & Logistics Officer`,
         org: `United States Marine Corps`,
-        desc: `Three billets of increasing scope, newest first: operations planning, theater logistics liaison, platoon command.`,
+        desc: `Three billets of increasing scope: platoon command, theater logistics liaison and operations planning.`,
         billets: [
           {
             when: `Mar. 2026 to present &middot; Okinawa`,
-            title: `Current Operations Officer, S-3, Combat Logistics Regiment 35`,
+            title: `Current/Future Operations Officer, S-3`,
             desc: `Lead action officer for a joint exercise of more than 1,600 personnel, synchronizing requirements with roughly 50 joint and service planners, and lead planner for two major regimental exercises. In the field I direct the regimental command node as senior watch officer for 150+ Marines and Sailors.`,
           },
           {
@@ -171,7 +170,7 @@ window.SITE = {
           },
           {
             when: `2024 to 2025 &middot; Okinawa`,
-            title: `Platoon Commander, 3d Supply Battalion`,
+            title: `Platoon Commander`,
             desc: `Led a platoon of 19 Marines, with the full scope that implies: training, evaluations, discipline, and welfare. Responsible for three supply accounts worth $29M that issued 4,000+ transactions valued at over $100M to 35 units across III Marine Expeditionary Force; raised 30-day documentation accountability from 60% to 92%, increased special-project parts shipped by 71%, and led the transfer of all three accounts to Marine Corps Logistics Command.`,
           },
         ],
@@ -213,7 +212,7 @@ window.SITE = {
     { group: `Statistics and modeling`, items: `Bayesian hierarchical models, PyMC and NUTS/MCMC, posterior predictive checking, regression with fixed effects and clustered errors, multiple-comparison control, simulation.` },
     { group: `Machine learning and NLP`, items: `Transformer fine-tuning (cross-encoders, sentence-transformers), pseudo-labeling and distillation, representation learning, embedding-space evaluation, LLM-assisted extraction with controlled prompts.` },
     { group: `Engineering`, items: `Python, SQL, relational schema design, data pipelines, API integration, KPI dashboards, Google Cloud Translation.` },
-    { group: `Languages`, items: `English (native), Portuguese and Spanish (functional).` },
+    { group: `Languages`, items: `English (native), Portuguese and Spanish (conversational).` },
   ],
 
   /* ---------- Background ---------- */
@@ -224,7 +223,7 @@ window.SITE = {
 
   /* ---------- Contact ---------- */
   contact: {
-    text: `My active-duty commitment ends in summer 2027. If you're working on Bayesian measurement, representation learning, or applied statistics in data-constrained settings, I'd like to hear from you.`,
+    text: `My active-duty military commitment ends in summer 2027. If you're working on Bayesian measurement, representation learning, or applied statistics in data-constrained settings, I'd like to hear from you.`,
     ways: [
       { key: `Email`, html: `<a href="mailto:ian.mcmurry01@gmail.com">ian.mcmurry01@gmail.com</a> &middot; <a href="mailto:imcmurry3@gatech.edu">imcmurry3@gatech.edu</a>` },
       { key: `LinkedIn`, html: `<a href="https://www.linkedin.com/in/ian-mcmurry">linkedin.com/in/ian-mcmurry</a>` },
