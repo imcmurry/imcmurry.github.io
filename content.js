@@ -1,34 +1,15 @@
 /* =====================================================================
-   content.js  —  ALL of the site's text lives in this one file.
-
-   How to edit
-   -----------
-   • Text sits inside backticks `like this`. You can use apostrophes and
-     quotes freely inside backticks. Line breaks inside backticks are fine.
-   • Basic HTML works inside text: <em>italic</em>, <strong>bold</strong>,
-     <a href="...">link</a>, &amp; for an ampersand.
-   • Lists (research, publications, experience, ...) are arrays. To add an
-     entry, copy an existing { ... } block, paste it, and edit. Keep the
-     comma after every block except the last one in a list.
-   • Dates and figures are plain text, so write them exactly as you want
-     them shown.
-   • Save, refresh the browser. If the page goes blank, a bracket, comma,
-     or backtick is missing somewhere; the page will say so at the top.
-
-   Files
-   -----
-   • Images referenced below live in assets/ (headshot, figures).
-   • PDFs referenced below live in files/.
+   content.js
    ===================================================================== */
 
 window.SITE = {
 
   /* ---------- Header ---------- */
   name: `Ian W. McMurry`,
-  tagline: `Data scientist and applied statistician. I build measurement tools for things that matter but that existing data doesn't capture.`,
+  tagline: `Data scientist and applied statistician. I develop statistical and machine-learning methods to measure real-world phenomena that conventional datasets miss.`,
   interests: [`Bayesian hierarchical modeling`, `Statistical machine learning`, `Representation learning`],
   bio: [
-    `I'm finishing an M.S. in Analytics at Georgia Tech (Computational track, 4.0 GPA, December 2026). My research follows one pattern: take a construct that people care about but that no dataset records directly, define it carefully enough to model, and validate the estimate well enough to act on. That has meant teaching a transformer to read social atmosphere in 162,840 hostel reviews, published at WASSA 2026 (ACL), and recovering composition-adjusted rental yields from unpaired housing listings with a hierarchical Bayesian model.`,
+    `I'm completing an M.S. in Analytics at Georgia Tech on the Computational Data Analytics track. I'm especially interested in problems where the outcome people actually care about is not directly observed. My work uses statistical modeling, machine learning, and unconventional data to recover those signals and turn them into meaningful measures that can be tested, compared, and used. That has meant building a domain-specific transformer pipeline to quantify social atmosphere across 162,840 hostel reviews, published at WASSA 2026 (ACL), and estimating composition-adjusted rental yields from unpaired housing listings with a hierarchical Bayesian model.`,
     `Alongside the research I serve as an active-duty U.S. Marine Corps logistics officer in Okinawa, Japan, and consult as an analytics engineer for S10 Consulting, where I design data pipelines and LLM-assisted extraction workflows for recurring clients.`,
   ],
   headshot: { src: `assets/headshot.jpg`, alt: `Portrait of Ian W. McMurry`, caption: `Georgia Tech &middot; Okinawa, Japan` },
@@ -45,12 +26,12 @@ window.SITE = {
 
   /* ---------- Research ---------- */
   research: {
-    lede: `Statistics and machine learning applied to unconventional data, to measure what conventional sources leave out.`,
+    lede: `Statistics and machine learning applied to unconventional data.`,
     projects: [
       {
         eyebrow: [`NLP`, `Representation learning`, `2024 to present`],
         title: `Measuring social atmosphere in hostel reviews`,
-        layout: `wide`,   // "wide" = figure spans the full width above the text; "tall" = figure sits beside the text
+        layout: `wide`,
         figure: {
           src: `assets/fig-umap.webp`,
           alt: `Two UMAP scatter plots of 4,994 labeled hostel reviews. Left: generic MiniLM embeddings, where social and non-social reviews overlap heavily. Right: fine-tuned bi-encoder embeddings, where social reviews form a distinct cluster separated from non-social reviews.`,
@@ -100,12 +81,12 @@ window.SITE = {
         layout: `wide`,
         figure: {
           src: `assets/fig-madmonkey.webp`,
-          alt: `Histogram of hostel socialness scores for 2,072 hostels worldwide, an exponential decay with mean 0.186, with 14 gold markers for Mad Monkey properties placed between 0.39 (East Side) and 0.70 (Siargao), all far into the right tail. Annotation: 12 of 14 sit in the top roughly 10% of hostels worldwide.`,
-          caption: `<strong>Where the chain sits in the world.</strong> The distribution of socialness scores across 2,072 hostels, with the 14 Mad Monkey properties marked. Twelve of the fourteen sit in the top roughly 10% of hostels worldwide, which is why the useful comparison is against same-city competitors rather than the global average.`,
+          alt: `Histogram of hostel socialness scores for 2,072 hostels worldwide, an exponential decay with mean 0.186, with 14 gold markers for the Mad Monkey properties included in the initial analysis placed between 0.39 (East Side) and 0.70 (Siargao), all far into the right tail. Annotation: 12 of 14 sit in the top roughly 10% of hostels worldwide.`,
+          caption: `<strong>Where the analyzed properties sit in the world.</strong> The distribution of socialness scores across 2,072 hostels, with the 14 Mad Monkey properties represented in the initial research corpus marked. Twelve of the fourteen sit in the top roughly 10% of hostels worldwide, which is why the useful comparison is against same-city competitors rather than the global average.`,
         },
-        frame: `What happens when a 14-property hostel chain wants to manage by a number that didn't exist a year ago.`,
+        frame: `What happens when one of Southeast Asia's leading hostel operators wants to manage guest experience using measures that did not exist a year ago.`,
         paragraphs: [
-          `Working with Mad Monkey's leadership through the Georgia Tech Applied Analytics Practicum, I put the socialness pipeline to operational use: benchmarking each property against non-Mad-Monkey hostels in the same city (global comparisons reward geography, not management), with false-discovery-rate control across the tests, and modeling how experience labels relate to guest ratings and review frequency using city and platform fixed effects with standard errors clustered by property. The analysis separates high-quality social experience from "chaotic social" reviews where social atmosphere appears alongside dirty or negative signals, which is where the operational levers turned out to be.`,
+          `I developed the collaboration directly with Mad Monkey's leadership and am using the Georgia Tech Applied Analytics Practicum as the academic framework for a broader applied research project. Mad Monkey is a leading hostel operator in Southeast Asia and now spans 25+ destinations; the initial analysis covers the 14 properties represented in my research corpus. I am extending the published socialness pipeline into an operational guest-experience intelligence system: benchmarking each property against non-Mad-Monkey hostels in the same city (global comparisons reward geography, not management), controlling the false discovery rate across comparisons, and modeling how experience labels relate to guest ratings and review frequency using city and platform fixed effects with standard errors clustered by property. The analysis also separates high-quality social experience from "chaotic social" reviews, where strong social atmosphere appears alongside dirty or negative signals, turning an abstract experience measure into something management can diagnose and act on.`,
         ],
         links: [
           { label: `Report (PDF)`, href: `files/McMurry_2026_Mad_Monkey_Beyond_Ratings.pdf` },
@@ -136,7 +117,9 @@ window.SITE = {
       kind: `Working paper`,
       title: `Estimating Rental Yields from Unpaired Online Housing Listings: A Hierarchical Bayesian Approach with Evidence from Armenia`,
       venue: `<strong>McMurry, I.</strong> Georgia Institute of Technology, August 2026.`,
-      links: [{ label: `PDF`, href: `files/McMurry_2026_Rental_Yields_Armenia.pdf` }],
+      links: [
+        { label: `PDF`, href: `files/McMurry_2026_Rental_Yields_Armenia.pdf` },
+      ],
     },
     {
       year: `2026`,
@@ -150,13 +133,15 @@ window.SITE = {
       kind: `Industry report`,
       title: `Beyond Ratings: Measuring the Impact of Guest Experience in Hostel Reviews`,
       venue: `<strong>McMurry, I.</strong> Prepared for Mad Monkey Hostels, Georgia Institute of Technology.`,
-      links: [{ label: `PDF`, href: `files/McMurry_2026_Mad_Monkey_Beyond_Ratings.pdf` }],
+      links: [
+        { label: `PDF`, href: `files/McMurry_2026_Mad_Monkey_Beyond_Ratings.pdf` },
+      ],
     },
   ],
 
   /* ---------- Experience (newest first) ---------- */
   experience: {
-    intro: `I studied finance and information systems at Emory, took my first analytics job while still a student, and reported to the Marine Corps the summer after graduating. Since then the work has run on two tracks: Marine Corps billets of increasing responsibility, and the graduate coursework, research, and consulting that grew up alongside them. Each built something different. The data work is where the modeling and engineering come from; the Marine Corps is where I learned to lead people and to plan and run operations at a scale I would not otherwise have reached this early.`,
+    intro: `I studied finance and information systems at Emory before commissioning as an officer in the U.S. Marine Corps. Since then, my work has developed along two parallel tracks: logistics and operations roles of increasing responsibility in the Marine Corps, and graduate study, research, and consulting in statistics, machine learning, and data engineering. Each has built a different part of how I work. The data side is where I developed the modeling and engineering; the Marine Corps is where I learned to lead people, make decisions under constraint, and plan and execute operations at a scale I would not otherwise have encountered this early.`,
     roles: [
       {
         when: `June 2025 to present`,
@@ -196,14 +181,14 @@ window.SITE = {
         place: `Atlanta, GA`,
         title: `Teaching Assistant, Business Analytics`,
         org: `Emory University`,
-        desc: `In my final semester I also taught: weekly office hours and grading for 250+ students in regression, advanced Excel, macros, and scenario analysis.`,
+        desc: `Supported a 250+ student Business Analytics course covering regression, advanced Excel, macros, and scenario analysis. I held weekly office hours, graded analytical assignments, and helped students work through quantitative methods and model-building problems one-on-one.`,
       },
       {
         when: `Nov. 2022 to Nov. 2023`,
         place: `Remote`,
-        title: `Operations Data Analyst Intern`,
+        title: `Operations Data Analyst`,
         org: `TOCA Football`,
-        desc: `The first analytics role, started in my senior year. TOCA runs soccer training centers; I analyzed more than $1.3M in sales across 14 locations to quantify revenue lost to discounts, built KPI dashboards for 240+ trainers, and automated the recurring reporting with Python and SQL-backed Google Sheets workflows, saving the operations team 15+ hours a week.`,
+        desc: `TOCA operates soccer training centers across the United States. I analyzed more than $1.3M in sales across 14 locations to quantify revenue lost to discounts, built KPI dashboards for 240+ trainers, and automated recurring reporting with Python and SQL-backed Google Sheets workflows, saving the operations team 15+ hours a week.`,
       },
     ],
   },
@@ -223,6 +208,7 @@ window.SITE = {
       courses: ``,
     },
   ],
+
   skills: [
     { group: `Statistics and modeling`, items: `Bayesian hierarchical models, PyMC and NUTS/MCMC, posterior predictive checking, regression with fixed effects and clustered errors, multiple-comparison control, simulation.` },
     { group: `Machine learning and NLP`, items: `Transformer fine-tuning (cross-encoders, sentence-transformers), pseudo-labeling and distillation, representation learning, embedding-space evaluation, LLM-assisted extraction with controlled prompts.` },
@@ -232,13 +218,13 @@ window.SITE = {
 
   /* ---------- Background ---------- */
   background: [
-    `I'm an American who grew up in Luxembourg and still calls it home, which is part of why so much of my work looks outward. The hostel research started from many nights spent in hostels and the observation that the thing travelers valued most was the one thing no platform measured. The housing research started from an interest in frontier markets, Armenia in particular, where careful statistics on messy public data can substitute for records that don't exist yet.`,
+    `I'm American, but I grew up in Luxembourg, and that international upbringing still shapes the questions I gravitate toward. Much of my research begins with something I encounter while moving through different places and then realize can be turned into a statistical problem. The hostel work grew out of years of hostel travel and the observation that the social atmosphere travelers cared about most was the one attribute no booking platform measured directly. The housing work grew from an interest in frontier markets, Armenia in particular, where careful statistics on messy public data can recover useful market structure when conventional records are thin or unavailable.`,
     `The Marine Corps gave me something the coursework couldn't. About a year in, I was leading a platoon of Marines and responsible for $29M in supply accounts; by my second year I was the logistics liaison for every Marine unit training in Korea; by my third I was planning exercises for more than 1,600 people. That level of leadership and operational responsibility is hard to find in civilian roles at my stage, and it sits alongside the modeling as part of what I bring: ownership of outcomes, plans built with the people who have to execute them, and the ability to run an operation, not only design one.`,
   ],
 
   /* ---------- Contact ---------- */
   contact: {
-    text: `My active-duty commitment ends in summer 2027, and I'm exploring doctoral research and applied data science roles that begin around then. If you're working on Bayesian measurement, representation learning, or applied statistics in data-constrained settings, I'd like to hear from you.`,
+    text: `My active-duty commitment ends in summer 2027. If you're working on Bayesian measurement, representation learning, or applied statistics in data-constrained settings, I'd like to hear from you.`,
     ways: [
       { key: `Email`, html: `<a href="mailto:ian.mcmurry01@gmail.com">ian.mcmurry01@gmail.com</a> &middot; <a href="mailto:imcmurry3@gatech.edu">imcmurry3@gatech.edu</a>` },
       { key: `LinkedIn`, html: `<a href="https://www.linkedin.com/in/ian-mcmurry">linkedin.com/in/ian-mcmurry</a>` },
