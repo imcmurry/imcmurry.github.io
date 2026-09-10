@@ -14,13 +14,17 @@ The public website stays on GitHub Pages. The API is deployed separately on Rail
 The `hostel-review-demo` Railway project uses the existing repository, branch
 `main`, root directory `/services/hostel-demo`, and `Dockerfile.railway`.
 Only changes beneath that service directory trigger API rebuilds. It uses one
-replica, sleeping when idle, and a private 1 GB volume mounted at `/data`.
+replica, sleeping when idle, and a private 500 MB volume mounted at `/data`.
 The domain routes to port 8080; `/healthz` reports `ready` and the model version
 after initialization. Cold starts include model loading and a UMAP warm-up.
 
 The initial volume is provisioned through `bootstrap.py`. A random secret
 `MODEL_UPLOAD_TOKEN` in Railway authenticates a single upload of the exact
-prepared ZIP to `POST /bootstrap/artifacts`. The bootstrap verifies the pinned
+prepared ZIP to `POST /bootstrap/artifacts`. Alternatively, a one-time private
+page at `/bootstrap/<SHA-256 of the token>` accepts the ZIP through a browser
+file chooser. Treat that URL as a private upload capability; it stops working
+after installation and must never be committed to the repository. The page uses
+no third-party assets, no referrers, and no caching. The bootstrap verifies the pinned
 SHA-256 before extraction, rejects unsafe paths, and atomically installs only
 `artifacts/`. Its temporary health response is `awaiting_artifacts`, not `ready`.
 After installation it replaces itself with the inference API, removing the
