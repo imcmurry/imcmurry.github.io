@@ -167,7 +167,7 @@ strong { font-weight: 600; }
 .sw { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: 0; margin: 0 2px 0 1px; }
 .sw.navy { background: #1f3a5f; } .sw.gold { background: #b88f29; }
 .hostel-demo { margin-top: 22px; border-top: 1px solid var(--rule); }
-.hostel-demo > summary { padding: 14px 0; color: var(--link); cursor: pointer; font-weight: 600; }
+.hostel-demo > summary { padding: 14px 0; color: var(--link); cursor: pointer; font-size: 1.25rem; font-weight: 600; }
 .hostel-demo > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 .figures { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; align-content: start; padding-top: 6px; }
 .fig-tall .figures { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 6px; }
@@ -333,7 +333,7 @@ footer .container { display: flex; justify-content: space-between; flex-wrap: wr
     if (p.figure) {
       html += '<div class="fig"><figure class="fig"><img src="' + p.figure.src + '" alt="' + p.figure.alt + '" loading="lazy"><figcaption>' + p.figure.caption + "</figcaption></figure>";
       if (p.demo === "hostel-social") {
-        html += '<details class="hostel-demo" id="hostel-demo"><summary>Try the model</summary><div class="demo-mount"><p>Enter a hostel review and explore how the model reads its social atmosphere.</p></div></details>';
+        html += '<details class="hostel-demo" id="hostel-demo"><summary>Try the model for yourself</summary><div class="demo-mount"><p>Enter a hostel review and explore how the model reads its social atmosphere.</p></div></details>';
       }
       html += '</div>';
     }
