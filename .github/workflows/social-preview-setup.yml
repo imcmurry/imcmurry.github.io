@@ -1,4 +1,4 @@
-name: Set up social preview
+name: Social preview metadata
 
 on:
   push:
@@ -9,164 +9,17 @@ permissions:
   contents: write
 
 jobs:
-  setup-social-preview:
+  patch-metadata:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Install Pillow
-        run: python -m pip install --quiet pillow
-
-      - name: Generate preview image and patch metadata
-        shell: bash
+      - uses: actions/checkout@v4
+      - name: Patch social metadata
         run: |
-          python <<'PY'
-          from pathlib import Path
-          import re
-          from PIL import Image, ImageDraw, ImageFont
-
-          # ---------- Generate 1200 x 630 Open Graph image ----------
-          W, H = 1200, 630
-          bg = (250, 251, 253)
-          navy = (31, 58, 95)
-          slate = (93, 103, 121)
-          faint = (221, 227, 236)
-          pale = (233, 238, 246)
-
-          im = Image.new('RGB', (W, H), bg)
-          d = ImageDraw.Draw(im)
-
-          serif_paths = [
-              '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf',
-              '/usr/share/fonts/truetype/liberation2/LiberationSerif-Regular.ttf',
-          ]
-          sans_paths = [
-              '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
-              '/usr/share/fonts/truetype/liberation2/LiberationSans-Regular.ttf',
-          ]
-          def first_font(paths, size):
-              for p in paths:
-                  if Path(p).exists():
-                      return ImageFont.truetype(p, size)
-              return ImageFont.load_default()
-
-          f_name = first_font(serif_paths, 78)
-          f_tag = first_font(sans_paths, 31)
-          f_url = first_font(sans_paths, 22)
-
-          # Subtle density curves, upper left.
-          pts1 = [(0, 160), (40, 154), (80, 135), (120, 94), (160, 52), (200, 38), (240, 62), (280, 105), (320, 139), (360, 157), (420, 163)]
-          pts2 = [(0, 166), (55, 164), (110, 151), (165, 122), (220, 92), (275, 76), (330, 87), (385, 112), (440, 142), (500, 158)]
-          d.line(pts1, fill=(166, 186, 211), width=3)
-          d.line(pts2, fill=(190, 204, 221), width=2)
-
-          # Subtle scatter/regression motif, upper right.
-          for x in range(820, 1160, 55):
-              y = int(185 - (x - 820) * 0.23)
-              d.ellipse((x-4, y-4, x+4, y+4), fill=(181, 199, 220))
-              d.ellipse((x+20, y+18, x+27, y+25), fill=(205, 217, 231))
-          d.line((805, 195, 1180, 92), fill=(182, 199, 219), width=2)
-
-          # Subtle network motif, lower left.
-          nodes = [(35, 470), (95, 530), (155, 485), (210, 560), (285, 515), (350, 575)]
-          edges = [(0,1),(1,2),(2,3),(3,4),(4,5),(1,4),(0,2),(2,4)]
-          for a,b in edges:
-              d.line((nodes[a], nodes[b]), fill=faint, width=2)
-          for x,y in nodes:
-              d.ellipse((x-7,y-7,x+7,y+7), fill=pale, outline=(180,199,220), width=2)
-
-          # Soft posterior-like ridge, lower right.
-          ridge = [(730, 610), (780, 585), (830, 595), (875, 555), (925, 565), (970, 520), (1015, 540), (1060, 485), (1110, 520), (1160, 455), (1200, 475)]
-          poly = [(730,630)] + ridge + [(1200,630)]
-          d.polygon(poly, fill=(243, 246, 250))
-          d.line(ridge, fill=(205, 217, 231), width=3)
-
-          # Main identity block.
-          name = 'IAN W. McMURRY'
-          bbox = d.textbbox((0,0), name, font=f_name)
-          d.text(((W-(bbox[2]-bbox[0]))/2, 232), name, font=f_name, fill=navy)
-          d.line((205, 337, 995, 337), fill=(139, 162, 190), width=2)
-
-          tag = 'Research  ·  Data Science  ·  Operations'
-          bbox = d.textbbox((0,0), tag, font=f_tag)
-          d.text(((W-(bbox[2]-bbox[0]))/2, 365), tag, font=f_tag, fill=navy)
-
-          url = 'imcmurry.github.io'
-          bbox = d.textbbox((0,0), url, font=f_url)
-          d.text(((W-(bbox[2]-bbox[0]))/2, 432), url, font=f_url, fill=slate)
-
-          out = Path('assets/og-preview.png')
-          out.parent.mkdir(parents=True, exist_ok=True)
-          im.save(out, optimize=True)
-
-          # ---------- Patch index.html metadata only ----------
-          p = Path('index.html')
-          html = p.read_text(encoding='utf-8')
-
-          # Remove any previous versions of these tags so the operation is idempotent.
-          patterns = [
-              r'^<meta property="og:url"[^>]*>\n?',
-              r'^<meta property="og:image"[^>]*>\n?',
-              r'^<meta property="og:image:type"[^>]*>\n?',
-              r'^<meta property="og:image:width"[^>]*>\n?',
-              r'^<meta property="og:image:height"[^>]*>\n?',
-              r'^<meta property="og:image:alt"[^>]*>\n?',
-              r'^<meta name="twitter:card"[^>]*>\n?',
-              r'^<meta name="twitter:title"[^>]*>\n?',
-              r'^<meta name="twitter:description"[^>]*>\n?',
-              r'^<meta name="twitter:image"[^>]*>\n?',
-              r'^<link rel="canonical"[^>]*>\n?',
-          ]
-          for pattern in patterns:
-              html = re.sub(pattern, '', html, flags=re.MULTILINE)
-
-          # Improve the preview title/description while preserving the site's visible content.
-          html = re.sub(
-              r'<meta property="og:title" content="[^"]*">',
-              '<meta property="og:title" content="Ian W. McMurry | Research, Data Science &amp; Operations">',
-              html,
-              count=1,
-          )
-          html = re.sub(
-              r'<meta property="og:description" content="[^"]*">',
-              '<meta property="og:description" content="Research, data science, publications, and operational experience spanning Bayesian modeling, machine learning, and applied analytics.">',
-              html,
-              count=1,
-          )
-
-          anchor = '<meta property="og:type" content="profile">'
-          insert = '''<meta property="og:type" content="profile">
-<link rel="canonical" href="https://imcmurry.github.io/">
-<meta property="og:url" content="https://imcmurry.github.io/">
-<meta property="og:image" content="https://imcmurry.github.io/assets/og-preview.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ian W. McMurry — Research, Data Science, and Operations">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ian W. McMurry | Research, Data Science &amp; Operations">
-<meta name="twitter:description" content="Research, data science, publications, and operational experience spanning Bayesian modeling, machine learning, and applied analytics.">
-<meta name="twitter:image" content="https://imcmurry.github.io/assets/og-preview.png">'''
-          if anchor not in html:
-              raise SystemExit('Could not find og:type anchor in index.html; refusing to modify file.')
-          html = html.replace(anchor, insert, 1)
-          p.write_text(html, encoding='utf-8')
-          PY
-
-      - name: Commit social preview
+          python -c 'from pathlib import Path; p=Path("index.html"); s=p.read_text(); old="<meta property=\"og:type\" content=\"profile\">"; new="""<meta property=\"og:type\" content=\"profile\">\n<link rel=\"canonical\" href=\"https://imcmurry.github.io/\">\n<meta property=\"og:url\" content=\"https://imcmurry.github.io/\">\n<meta property=\"og:image\" content=\"https://imcmurry.github.io/assets/og-preview.jpg\">\n<meta property=\"og:image:type\" content=\"image/jpeg\">\n<meta property=\"og:image:width\" content=\"1200\">\n<meta property=\"og:image:height\" content=\"630\">\n<meta property=\"og:image:alt\" content=\"Ian W. McMurry — Research, Data Science, and Operations\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<meta name=\"twitter:image\" content=\"https://imcmurry.github.io/assets/og-preview.jpg\">"""; assert old in s; s=s.replace(old,new,1); p.write_text(s)'
+      - name: Commit metadata
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html assets/og-preview.png
-          if git diff --cached --quiet; then
-            echo "No changes needed."
-          else
-            git commit -m "Add LinkedIn and Open Graph social preview"
-            git push
-          fi
+          git add index.html
+          git commit -m "Add LinkedIn Open Graph metadata"
+          git push
