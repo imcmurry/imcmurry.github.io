@@ -30,6 +30,7 @@ window.SITE = {
       {
         eyebrow: [`NLP`, `Representation learning`, `2024 to present`],
         title: `Measuring social atmosphere in hostel reviews`,
+        demo: `hostel-social`,
         layout: `wide`,
         figure: {
           src: `assets/fig-umap.webp`,

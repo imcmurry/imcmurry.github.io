@@ -1,0 +1,9 @@
+.sites-runtime/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+services/hostel-demo/artifacts/
+services/hostel-demo/public-assets/
+hostel-demo-artifacts.zip
+services/hostel-demo/.env

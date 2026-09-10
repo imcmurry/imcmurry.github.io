@@ -1,0 +1,47 @@
+{
+  "version": "9a89cc3b81b92996",
+  "examples": [
+    {
+      "label": "Meeting people",
+      "text": "We cooked together in the common kitchen and went out with the other guests every night. I arrived alone and left with new friends.",
+      "result": {
+        "version": "9a89cc3b81b92996",
+        "probability": 0.9999999999946605,
+        "threshold": 0.5405342781281611,
+        "label": "social",
+        "point": [
+          14.042398452758789,
+          7.0017313957214355
+        ]
+      }
+    },
+    {
+      "label": "A comfortable stay",
+      "text": "The room was spotless and the bed was comfortable. The staff were helpful and the location was convenient for the bus station.",
+      "result": {
+        "version": "9a89cc3b81b92996",
+        "probability": 3.911089234206349e-07,
+        "threshold": 0.5405342781281611,
+        "label": "non-social",
+        "point": [
+          -4.347762107849121,
+          10.655009269714355
+        ]
+      }
+    },
+    {
+      "label": "Hard to connect",
+      "text": "Nobody spoke to each other. The common room was empty every evening and it was difficult to meet anyone.",
+      "result": {
+        "version": "9a89cc3b81b92996",
+        "probability": 9.858202991187367e-06,
+        "threshold": 0.5405342781281611,
+        "label": "non-social",
+        "point": [
+          -0.7859461903572083,
+          11.990507125854492
+        ]
+      }
+    }
+  ]
+}
