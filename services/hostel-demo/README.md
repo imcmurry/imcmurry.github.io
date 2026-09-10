@@ -1,13 +1,37 @@
 # Hostel review demo
 
 An expandable, lazy-loaded demo below the existing hostel UMAP figure. The
-browser sends review text to a small Cloud Run service; the transformer never
-downloads to the browser. This draft includes actual example outputs and a
+browser sends review text to a small model service; the transformer never
+downloads to the browser. The demo includes actual example outputs and a
 fixed reference map, published with the owner's approval.
 Custom text becomes available when `apiBase` in
 `assets/hostel-demo-config.json` points to the deployed service.
 
-Complete model-service deployment and browser verification before merging this draft.
+The public website stays on GitHub Pages. The API is deployed separately on Railway.
+
+## Railway deployment
+
+The `hostel-review-demo` Railway project uses the existing repository, branch
+`main`, root directory `/services/hostel-demo`, and `Dockerfile.railway`.
+Only changes beneath that service directory trigger API rebuilds. It uses one
+replica, sleeping when idle, and a private 1 GB volume mounted at `/data`.
+The domain routes to port 8080; `/healthz` reports `ready` and the model version
+after initialization. Cold starts include model loading and a UMAP warm-up.
+
+The initial volume is provisioned through `bootstrap.py`. A random secret
+`MODEL_UPLOAD_TOKEN` in Railway authenticates a single upload of the exact
+prepared ZIP to `POST /bootstrap/artifacts`. The bootstrap verifies the pinned
+SHA-256 before extraction, rejects unsafe paths, and atomically installs only
+`artifacts/`. Its temporary health response is `awaiting_artifacts`, not `ready`.
+After installation it replaces itself with the inference API, removing the
+upload route and token from the running process. Subsequent starts load the
+persistent files directly. Model files and the token are never committed to git.
+If the volume is replaced, repeat provisioning with a fresh token before
+directing visitors to the service. No expiring download links are required.
+
+Required service variables: `PORT=8080`, `ARTIFACT_DIR=/data/artifacts`,
+`ALLOWED_ORIGINS=https://imcmurry.github.io`. `MODEL_UPLOAD_TOKEN` is needed only
+for initial provisioning. Keep model files and any deployment secrets private.
 
 ## What the score means
 
@@ -50,7 +74,7 @@ and positions come from the real service implementation and are explicitly
 labeled as saved outputs in the UI. Editing a review clears its old result and
 cancels an in-flight request, preventing stale results from attaching to new text.
 
-## Deploy the prepared bundle
+## Alternative: deploy on Cloud Run
 
 Use the prepared `hostel-demo-artifacts.zip` supplied privately with this change. Its
 `artifacts/` directory belongs here, next to the Dockerfile. `public-assets/`
