@@ -198,24 +198,12 @@ window.SITE = {
     },
   ],
 
-  honors: [
-    {
-      title: `Navy and Marine Corps Achievement Medal`,
-      org: `United States Marine Corps`,
-      meta: `2026 &middot; Awarded for service as Officer in Charge, Korea Logistics Liaison Detachment`,
-    },
-    {
-      title: `Dean's List`,
-      org: `Emory University`,
-      meta: `Fall 2022 &middot; Spring 2023`,
-    },
-  ],
-
   skills: [
     { group: `Statistics and modeling`, items: `Bayesian hierarchical models, PyMC and NUTS/MCMC, posterior predictive checking, regression with fixed effects and clustered errors, multiple-comparison control, simulation.` },
     { group: `Machine learning and NLP`, items: `Transformer fine-tuning (cross-encoders, sentence-transformers), pseudo-labeling and distillation, representation learning, embedding-space evaluation, LLM-assisted extraction with controlled prompts.` },
     { group: `Engineering`, items: `Python, SQL, relational schema design, data pipelines, API integration, KPI dashboards, Google Cloud Translation.` },
     { group: `Languages`, items: `English (native), Portuguese and Spanish (conversational).` },
+    { group: `Honors & recognition`, items: `<strong>Navy and Marine Corps Achievement Medal</strong> (2026), awarded for service as Officer in Charge, Korea Logistics Liaison Detachment.<br><strong>Dean's List, Emory University</strong> (Fall 2022; Spring 2023).` },
   ],
 
   /* ---------- Background ---------- */
