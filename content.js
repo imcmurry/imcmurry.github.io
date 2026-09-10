@@ -56,7 +56,8 @@ window.SITE = {
       {
         eyebrow: [`Bayesian hierarchical modeling`, `Housing economics`, `2026`],
         title: `Rental yields from unpaired online housing listings`,
-        layout: `tall`,
+        demo: `armenia-yields`,
+        layout: `wide`,
         figure: {
           src: `assets/fig-yields.webp`,
           alt: `Dot plot of rental yield for 36 Armenian districts sorted from Jermuk at the top to Kentron at the bottom. Filled navy dots with 80% credible intervals show the model's posterior median yield; open orange circles show the raw median ratio; thin lines connect each pair, showing how far the raw figure moves once composition is adjusted.`,
