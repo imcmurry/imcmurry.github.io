@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import shutil
+import secrets
 import tempfile
 import threading
 import zipfile
@@ -54,6 +55,7 @@ def provision(data_dir, token, port):
         raise RuntimeError("Set a strong MODEL_UPLOAD_TOKEN before initial provisioning")
     completed = threading.Event()
     upload_lock = threading.Lock()
+    upload_path = "/bootstrap/" + hashlib.sha256(token.encode()).hexdigest()
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, *_):
@@ -70,12 +72,50 @@ def provision(data_dir, token, port):
             self.wfile.write(body)
 
         def do_GET(self):
+            if hmac.compare_digest(self.path.encode(), upload_path.encode()):
+                nonce = secrets.token_urlsafe(24)
+                body = ('''<!doctype html><html lang="en"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Install hostel model</title><body><h1>Install hostel model</h1>
+<p>Upload the prepared hostel-demo-artifacts.zip to this private service.
+The exact file checksum is verified before installation. This page closes after installation.</p>
+<form><label for="bundle">Prepared model bundle</label>
+<input id="bundle" type="file" accept=".zip" required>
+<button type="submit">Install model</button></form><p role="status"></p>
+<script nonce="''' + nonce + '''">
+document.querySelector('form').addEventListener('submit', async event => {
+  event.preventDefault();
+  const status = document.querySelector('[role=status]');
+  const button = document.querySelector('button');
+  button.disabled = true;
+  status.textContent = 'Uploading and verifying model files…';
+  try {
+    const response = await fetch(location.pathname, {method: 'POST',
+      body: document.querySelector('input').files[0], credentials: 'omit'});
+    if (!response.ok) throw new Error('Installation failed. Check the bundle and retry.');
+    status.textContent = 'Model installed. The inference service is starting.';
+  } catch (error) {
+    status.textContent = error.message;
+    button.disabled = false;
+  }
+});
+</script></body></html>''').encode()
+                self.send_response(200)
+                self.send_header("Content-Type", "text/html; charset=utf-8")
+                self.send_header("Content-Length", str(len(body)))
+                self.send_header("Cache-Control", "no-store")
+                self.send_header("Referrer-Policy", "no-referrer")
+                self.send_header("Content-Security-Policy", f"default-src 'none'; script-src 'nonce-{nonce}'; connect-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'none'")
+                self.end_headers()
+                self.wfile.write(body)
+                return
             self.reply(200 if self.path == "/healthz" else 503, {"status": "awaiting_artifacts"})
 
         def do_POST(self):
-            if self.path != "/bootstrap/artifacts" or not hmac.compare_digest(
-                self.headers.get("Authorization", "").encode(), f"Bearer {token}".encode()
-            ):
+            authorized = hmac.compare_digest(self.path.encode(), upload_path.encode()) or (
+                self.path == "/bootstrap/artifacts" and hmac.compare_digest(
+                    self.headers.get("Authorization", "").encode(), f"Bearer {token}".encode()))
+            if not authorized:
                 self.reply(404, {"error": "Not found"})
                 return
             if self.headers.get("Content-Length") != str(BUNDLE_BYTES) or self.headers.get("Transfer-Encoding"):
