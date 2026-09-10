@@ -166,6 +166,9 @@ strong { font-weight: 600; }
 .fig figcaption .fno { font-weight: 600; color: var(--ink); }
 .sw { display: inline-block; width: 9px; height: 9px; border-radius: 50%; vertical-align: 0; margin: 0 2px 0 1px; }
 .sw.navy { background: #1f3a5f; } .sw.gold { background: #b88f29; }
+.hostel-demo { margin-top: 22px; border-top: 1px solid var(--rule); }
+.hostel-demo > summary { padding: 14px 0; color: var(--link); cursor: pointer; font-weight: 600; }
+.hostel-demo > summary:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
 .figures { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; align-content: start; padding-top: 6px; }
 .fig-tall .figures { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding-top: 6px; }
 .figures li { display: grid; gap: 2px; padding-left: 14px; border-left: 2px solid var(--accent-soft); }
@@ -328,7 +331,11 @@ footer .container { display: flex; justify-content: space-between; flex-wrap: wr
     html += '<article class="project' + (p.layout === "tall" ? " fig-tall" : "") + '">'
       + '<header class="project-head"><div class="eyebrow">' + p.eyebrow.map(function (e) { return "<span>" + e + "</span>"; }).join("") + "</div><h3>" + p.title + "</h3></header>";
     if (p.figure) {
-      html += '<figure class="fig"><img src="' + p.figure.src + '" alt="' + p.figure.alt + '" loading="lazy"><figcaption>' + p.figure.caption + "</figcaption></figure>";
+      html += '<div class="fig"><figure class="fig"><img src="' + p.figure.src + '" alt="' + p.figure.alt + '" loading="lazy"><figcaption>' + p.figure.caption + "</figcaption></figure>";
+      if (p.demo === "hostel-social") {
+        html += '<details class="hostel-demo" id="hostel-demo"><summary>Try the model</summary><div class="demo-mount"><p>Enter a hostel review and explore how the model reads its social atmosphere.</p></div></details>';
+      }
+      html += '</div>';
     }
     html += '<div class="body">' + (p.frame ? '<p class="frame">' + p.frame + "</p>" : "") + paras(p.paragraphs) + links(p.links, "links") + "</div>";
     if (p.figures && p.figures.length) {
@@ -394,6 +401,20 @@ footer .container { display: flex; justify-content: space-between; flex-wrap: wr
     + "</div></div></section>";
 
   main.innerHTML = html;
+  var demo = document.getElementById("hostel-demo");
+  if (demo) {
+    var demoLoading = false;
+    demo.addEventListener("toggle", function () {
+      if (!demo.open || demoLoading) return;
+      demoLoading = true;
+      import("./assets/hostel-demo.js").then(function (module) {
+        return module.mount(demo.querySelector(".demo-mount"));
+      }).catch(function () {
+        demoLoading = false;
+        demo.querySelector(".demo-mount").textContent = "The interactive demo is not available yet. Please try again later.";
+      });
+    });
+  }
   document.getElementById("footer").innerHTML = "<span>" + S.footer.left + "</span><span>" + S.footer.right + "</span>";
 })();
 </script>

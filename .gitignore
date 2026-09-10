@@ -1,0 +1,12 @@
+.sites-runtime/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+services/hostel-demo/artifacts/
+services/hostel-demo/public-assets/
+hostel-demo-artifacts.zip
+services/hostel-demo/.env
+# Generated from private Drive artifacts; publish only with explicit approval.
+assets/hostel-demo-map.json
+assets/hostel-demo-examples.json

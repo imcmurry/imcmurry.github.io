@@ -1,0 +1,6 @@
+*
+!app.py
+!model.py
+!requirements.txt
+!artifacts/
+!artifacts/**
