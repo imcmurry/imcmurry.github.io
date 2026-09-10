@@ -9,14 +9,13 @@ window.SITE = {
   tagline: `Data scientist and applied statistician. I develop statistical and machine-learning methods to measure real-world phenomena that conventional datasets miss.`,
   interests: [`Bayesian hierarchical modeling`, `Statistical machine learning`, `Representation learning`],
   bio: [
-    `I'm completing an M.S. in Analytics at Georgia Tech on the Computational Data Analytics track. I'm especially interested in problems where the outcome people actually care about is not directly observed. My work uses statistical modeling, machine learning, and unconventional data to recover those signals and turn them into meaningful measures that can be tested, compared, and used. That has meant building a domain-specific transformer pipeline to quantify social atmosphere across 162,840 hostel reviews, published at WASSA 2026 (ACL), and estimating composition-adjusted rental yields from unpaired housing listings with a hierarchical Bayesian model.`,
+    `I'm completing an M.S. in Analytics at Georgia Tech on the Computational Data Analytics track. I'm especially interested in problems where the outcome people actually care about is not directly observed. My work uses statistical modeling, machine learning, and unconventional data to recover those signals and turn them into meaningful measures that can be tested, compared, and used. That has meant everything from building a domain-specific transformer pipeline to quantify social atmosphere across 162,840 hostel reviews, published at WASSA 2026 (ACL), to estimating composition-adjusted rental yields from unpaired housing listings with a hierarchical Bayesian model.`,
     `Alongside the research I serve as an active-duty U.S. Marine Corps supply and logistics officer in Okinawa, Japan, and consult as an analytics engineer for S10 Consulting, where I design data pipelines and LLM-assisted extraction workflows for recurring clients.`,
   ],
   headshot: { src: `assets/headshot.jpg`, alt: `Portrait of Ian W. McMurry`, caption: `Georgia Tech &middot; Okinawa, Japan` },
   links: [
     { label: `ian.mcmurry01@gmail.com`, href: `mailto:ian.mcmurry01@gmail.com` },
     { label: `LinkedIn`, href: `https://www.linkedin.com/in/ian-mcmurry` },
-    { label: `GitHub`, href: `https://github.com/imcmurry` },
     { label: `ACL Anthology`, href: `https://doi.org/10.18653/v1/2026.wassa-1.3` },
   ],
   documents: [
@@ -65,7 +64,7 @@ window.SITE = {
         },
         frame: `Where transaction registries are thin, online classifieds are the richest housing microdata available. But rent and sale listings describe different dwellings, so a naive median ratio moves whenever the housing mix moves, not only when the rent&ndash;price relationship does.`,
         paragraphs: [
-          `I model rents and sale prices as separate log-linear hedonic surfaces whose district intercepts are drawn from a bivariate normal with a learned rent&ndash;sale correlation, so locations that are sparse on one side of the market borrow strength from the other. Dwelling characteristics absorb the composition differences that bias raw ratios, and the implied yield for a standardized apartment is recovered draw by draw from the posterior, returning a distribution rather than a point estimate. The model is fit in PyMC with NUTS to 8,863 listings across 36 Armenian districts and requires no matched-pair or registry data, which makes it transferable to other data-constrained markets.`,
+          `I model rents and sale prices as separate log-linear hedonic surfaces whose district intercepts are drawn from a bivariate normal with a learned rent&ndash;sale correlation, so locations that are sparse on one side of the market borrow strength from the other. Dwelling characteristics absorb the composition differences that bias raw ratios, and the implied yield for a standardized apartment is recovered draw by draw from the posterior, returning a distribution rather than a point estimate. The model is fit in PyMC with NUTS to 8,863 listings across 36 Armenian districts and requires no matched-pair or registry data, which makes it transferable to other data-constrained markets. The result is a district-level yield measure that is comparable across places rather than driven by which types of homes happen to be listed.`,
         ],
         links: [
           { label: `Working paper (PDF)`, href: `files/McMurry_2026_Rental_Yields_Armenia.pdf` },
@@ -89,9 +88,7 @@ window.SITE = {
         paragraphs: [
           `I am working directly with the COO and CTO of Mad Monkey Hostels, one of Asia's largest hostel operators, in an applied research partnership that is bringing my published machine-learning research into operational use. The project extends the transformer pipeline from measuring social atmosphere into a broader Guest Experience Intelligence system: continuously converting unstructured guest reviews into property-level signals on social experience, cleanliness, sentiment, and operational complaints. For property managers, those signals are designed to show what guests are experiencing, what is changing, where problems are emerging, and how a hostel compares with its local market. At the corporate level, the same system is designed to connect guest-experience signals with occupancy, ADR, F&B, events, and other internal data to understand which parts of the experience are associated with commercial performance and where operational investment may create the most value.`,
         ],
-        links: [
-          { label: `Report (PDF)`, href: `files/McMurry_2026_Mad_Monkey_Beyond_Ratings.pdf` },
-        ],
+        links: [],
         figures: [
           { value: `53.2`, unit: `% vs. 21.4%`, label: `share of Mad Monkey reviews classified social, against the market-wide rate` },
           { value: `14 of 14`, unit: ``, label: `properties show positive, statistically significant social lift over same-city competitors` },
@@ -129,15 +126,6 @@ window.SITE = {
       venue: `<strong>McMurry, I. W.</strong> Georgia Tech OMS Analytics Conference, October 8&ndash;9, 2026 (virtual). Accepted.`,
       links: [],
     },
-    {
-      year: `2026`,
-      kind: `Industry report`,
-      title: `Beyond Ratings: Measuring the Impact of Guest Experience in Hostel Reviews`,
-      venue: `<strong>McMurry, I.</strong> Prepared for Mad Monkey Hostels, Georgia Institute of Technology.`,
-      links: [
-        { label: `PDF`, href: `files/McMurry_2026_Mad_Monkey_Beyond_Ratings.pdf` },
-      ],
-    },
   ],
 
   /* ---------- Experience (newest first) ---------- */
@@ -150,7 +138,7 @@ window.SITE = {
         current: true,
         title: `Analytics Engineer Consultant`,
         org: `S10 Consulting`,
-        desc: `In parallel with the Marine Corps billets below. S10 is a frontier-markets data science firm; I designed the multi-stage ingestion and insight-generation platform that turns unstructured government procurement notices into structured, searchable data for 5+ recurring clients, built the LLM-assisted extraction workflows that produce 11 standardized attributes per solicitation through controlled API calls and reusable prompt templates, and architected the relational schemas that moved the recurring analysis from manual work into a product. The research above and the Georgia Tech degree ran on the same parallel track.`,
+        desc: `I work with S10 in parallel with my Marine Corps service. S10 is a defense and government contracting consultancy. I designed the multi-stage ingestion and insight-generation platform that turns unstructured government procurement notices into structured, searchable data for 5+ recurring clients. I also built LLM-assisted extraction workflows that produce 11 standardized attributes per solicitation through controlled API calls and reusable prompt templates, and architected the relational schemas that moved recurring analysis from manual work into a product.`,
       },
       {
         when: `July 2023 to present`,
@@ -210,6 +198,19 @@ window.SITE = {
     },
   ],
 
+  honors: [
+    {
+      title: `Navy and Marine Corps Achievement Medal`,
+      org: `United States Marine Corps`,
+      meta: `2026 &middot; Awarded for service as Officer in Charge, Korea Logistics Liaison Detachment`,
+    },
+    {
+      title: `Dean's List`,
+      org: `Emory University`,
+      meta: `Fall 2022 &middot; Spring 2023`,
+    },
+  ],
+
   skills: [
     { group: `Statistics and modeling`, items: `Bayesian hierarchical models, PyMC and NUTS/MCMC, posterior predictive checking, regression with fixed effects and clustered errors, multiple-comparison control, simulation.` },
     { group: `Machine learning and NLP`, items: `Transformer fine-tuning (cross-encoders, sentence-transformers), pseudo-labeling and distillation, representation learning, embedding-space evaluation, LLM-assisted extraction with controlled prompts.` },
@@ -229,7 +230,6 @@ window.SITE = {
     ways: [
       { key: `Email`, html: `<a href="mailto:ian.mcmurry01@gmail.com">ian.mcmurry01@gmail.com</a> &middot; <a href="mailto:imcmurry3@gatech.edu">imcmurry3@gatech.edu</a>` },
       { key: `LinkedIn`, html: `<a href="https://www.linkedin.com/in/ian-mcmurry">linkedin.com/in/ian-mcmurry</a>` },
-      { key: `GitHub`, html: `<a href="https://github.com/imcmurry">github.com/imcmurry</a>` },
       { key: `Documents`, html: `<a href="files/Ian_McMurry_CV.pdf">Academic CV</a> &middot; <a href="files/Ian_McMurry_Resume.pdf">Data science resume</a>` },
     ],
   },
