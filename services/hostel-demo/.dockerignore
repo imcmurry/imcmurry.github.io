@@ -1,6 +1,9 @@
 *
 !app.py
 !model.py
+!bootstrap.py
+!Dockerfile
+!Dockerfile.railway
 !requirements.txt
 !artifacts/
 !artifacts/**
