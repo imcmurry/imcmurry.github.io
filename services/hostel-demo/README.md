@@ -2,14 +2,12 @@
 
 An expandable, lazy-loaded demo below the existing hostel UMAP figure. The
 browser sends review text to a small Cloud Run service; the transformer never
-downloads to the browser. This draft contains the implementation. The prepared
-private bundle includes actual example outputs and a fixed reference map.
-Publishing those generated assets requires the owner's explicit approval.
+downloads to the browser. This draft includes actual example outputs and a
+fixed reference map, published with the owner's approval.
 Custom text becomes available when `apiBase` in
 `assets/hostel-demo-config.json` points to the deployed service.
 
-**Do not merge this draft yet.** The generated assets are intentionally excluded
-from this public repository pending approval; the model service also needs deployment.
+Complete model-service deployment and browser verification before merging this draft.
 
 ## What the score means
 
@@ -56,9 +54,8 @@ cancels an in-flight request, preventing stale results from attaching to new tex
 
 Use the prepared `hostel-demo-artifacts.zip` supplied privately with this change. Its
 `artifacts/` directory belongs here, next to the Dockerfile. `public-assets/`
-contains the coordinate map and saved example outputs. After explicit approval
-to publish those assets, copy its two JSON files into the root `assets/` directory
-and remove their two exclusions from `.gitignore`. Model weights,
+contains the coordinate map and saved example outputs, which are already checked
+into the root `assets/` directory with the owner's approval. Model weights,
 projection objects, and source CSV files must stay out of the public repository.
 
 From Google Cloud Shell (with the target project selected and billing enabled):
