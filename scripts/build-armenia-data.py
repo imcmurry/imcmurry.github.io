@@ -104,17 +104,49 @@ def build(paper, database, boundaries):
                 posteriorDensityAvailable=False,
                 overviewDefinition='Unweighted median of published location posterior medians within each region; not a region-level posterior',
                 boundarySource=dict(provider='geoBoundaries / Government of Armenia / OCHA ROCCA',
-                  year=2020, license='CC BY 3.0 IGO', boundaryId='ARM-ADM1-6114869',
+                  year=2005, license='CC BY 3.0 IGO', boundaryId='ARM-ADM1-6114869',
                   url='https://www.geoboundaries.org/api/current/gbOpen/ARM/ADM1/',
                   modifications='Equirectangular projection, rounded to 0.1 display unit; no analytical spatial interpolation'),
                 regions=sorted(regions,key=lambda r:r['name']), locations=locations)
+
+
+def add_posterior(data, export_path):
+    """Attach an inspected export; keep its sampler review flag and provenance."""
+    posterior = json.loads(Path(export_path).read_text())
+    old = {r['name']: r for r in data['locations']}
+    new = {r['name']: r for r in posterior['locations']}
+    assert len(new) == len(posterior['locations']) == 36 and set(new) == set(old)
+    assert posterior['profile'] == data['profile']
+    for name, row in new.items():
+        original = old[name]
+        assert all(row[k] == original[k] for k in ['region', 'rentCount', 'saleCount'])
+        assert abs(row['raw'] - original['raw']) < 0.00001
+        assert row['lower95'] < row['lower80'] < row['median'] < row['upper80'] < row['upper95']
+        xs, ys = row['density']['x'], row['density']['y']
+        assert len(xs) == len(ys) >= 100
+        assert all(math.isfinite(v) for v in xs+ys)
+        assert all(a < b for a,b in zip(xs,xs[1:])) and min(xs) > 0 and min(ys) >= 0
+        area = sum((b-a)*(c+d)/2 for a,b,c,d in zip(xs,xs[1:],ys,ys[1:]))
+        assert 0.99 < area < 1.01
+    data['publishedReference'] = [{k:r[k] for k in ['name','median','lower80','upper80']} for r in data['locations']]
+    data['locations'] = posterior['locations']
+    data['posteriorDensityAvailable'] = True
+    data['posteriorSource'] = '2026-09-10 refit of original Model 2, same May 2026 analytic sample'
+    data['posteriorExport'] = {k:posterior[k] for k in ['generatedUtc','drawsPerLocation','diagnostics','sourceDatabaseSha256','modelCodeSha256','intervalType','densityUnits']}
+    data['overviewDefinition'] = 'Unweighted median of refitted location posterior medians within each region; not a region-level posterior'
+    for region in data['regions']:
+        region['overviewMedian'] = round(statistics.median(r['median'] for r in data['locations'] if r['region'] == region['id']),3)
+    return data
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     for option in ['paper','database','boundaries','output']:
         parser.add_argument('--'+option, required=True)
+    parser.add_argument('--posterior', help='Optional reviewed Colab posterior curve export')
     args = parser.parse_args()
     data = build(args.paper,args.database,args.boundaries)
+    if args.posterior:
+        data = add_posterior(data, args.posterior)
     Path(args.output).write_text(json.dumps(data,separators=(',',':'))+'\n')
     print(f"Built {len(data['regions'])} regions and {len(data['locations'])} locations; {Path(args.output).stat().st_size:,} bytes")

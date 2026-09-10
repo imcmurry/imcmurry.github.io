@@ -5,8 +5,8 @@
 .armenia-region-picker { display: grid; gap: 4px; min-width: 160px; font-size: .875rem; }
 .armenia-explorer select { width: 100%; min-height: 42px; padding: 8px 28px 8px 10px; border: 1px solid var(--rule); border-radius: 4px; color: var(--ink); background: var(--paper); font: inherit; }
 .armenia-explorer :is(select, button, [role="button"]):focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
-.armenia-stage { position: relative; min-height: 570px; padding-right: 350px; }
-.armenia-geography { display: block; width: 100%; height: auto; min-height: 480px; overflow: visible; }
+.armenia-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 314px; gap: 20px; align-items: start; min-height: 570px; padding: 0 26px 24px 0; }
+.armenia-geography { grid-column: 1; grid-row: 1; display: block; width: 100%; height: auto; min-height: 480px; overflow: visible; }
 .armenia-region { cursor: pointer; stroke: var(--paper); stroke-width: 1.5; stroke-linejoin: round; transition: fill .15s, filter .15s; }
 .armenia-region:hover { filter: brightness(1.12); stroke: var(--ink); }
 .armenia-region[aria-pressed="true"] { stroke: #c59742; stroke-width: 3; }
@@ -14,7 +14,7 @@
 .armenia-map-label.small { font-size: 13px; }
 .armenia-callout { fill: none; stroke: var(--ink-2); stroke-width: 1; pointer-events: none; }
 .armenia-country-label { fill: var(--ink-3); font: 13px var(--sans); letter-spacing: 2px; pointer-events: none; }
-.armenia-card { position: absolute; right: 26px; top: 24px; width: 314px; padding: 22px; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper); box-shadow: 0 10px 30px rgb(0 0 0 / .06); }
+.armenia-card { position: relative; grid-column: 2; grid-row: 1; margin-top: 24px; width: 100%; padding: 22px; border: 1px solid var(--rule); border-radius: 5px; background: var(--paper); box-shadow: 0 10px 30px rgb(0 0 0 / .06); }
 .armenia-card[hidden] { display: none; }
 .armenia-card-close { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; border: 0; background: transparent; color: var(--ink-2); font: 26px/1 var(--sans); cursor: pointer; }
 .armenia-card-region { color: var(--ink-2); margin: 0 24px 5px 0; font-size: .875rem; }
@@ -33,6 +33,10 @@
 .armenia-plot .posterior { stroke: var(--accent); fill: var(--accent); }
 .armenia-plot .interval-band { fill: var(--accent-soft); }
 .armenia-plot .raw { stroke: #b47824; fill: var(--paper); stroke-width: 2; }
+.armenia-plot .density-curve { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.armenia-plot .density-shade { fill: var(--accent); fill-opacity: .18; }
+.armenia-plot .density-median { stroke: var(--accent); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.armenia-plot .density-raw { stroke: #b47824; stroke-width: 1.5; stroke-dasharray: 3 3; }
 .armenia-plot-key { display: flex; flex-wrap: wrap; gap: 5px 13px; margin: 0 0 14px; font-size: .8rem; color: var(--ink-2); }
 .armenia-plot-key span::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; background: var(--accent); }
 .armenia-plot-key span:last-child::before { background: transparent; border: 2px solid #b47824; }
@@ -42,7 +46,7 @@
 .armenia-counts div { display: flex; flex-direction: column-reverse; }
 .armenia-counts dt { font-size: .8rem; color: var(--ink-2); }
 .armenia-counts dd { margin: 0; font-weight: 600; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
-.armenia-empty { position: absolute; right: 26px; top: 85px; width: 314px; color: var(--ink-2); font: 1.1rem/1.6 var(--serif); padding: 20px; }
+.armenia-empty { grid-column: 2; grid-row: 1; margin-top: 85px; color: var(--ink-2); font: 1.1rem/1.6 var(--serif); padding: 20px; }
 .armenia-empty[hidden] { display: none; }
 .armenia-bottom { border-top: 1px solid var(--rule); padding: 18px 26px 20px; display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 16px 28px; align-items: start; }
 .armenia-legend-label { font-size: .875rem; margin-bottom: 6px; }
@@ -52,8 +56,7 @@
 .armenia-explorer + figcaption { max-width: none; }
 .armenia-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 @media (max-width: 900px) {
-  .armenia-stage { padding-right: 315px; }
-  .armenia-card, .armenia-empty { width: 295px; right: 16px; }
+  .armenia-stage { grid-template-columns: minmax(0, 1fr) 295px; padding-right: 16px; }
   .armenia-card { padding: 18px; }
   .armenia-top { padding: 18px 18px 0; }
   .armenia-geography { min-height: 510px; }
@@ -61,9 +64,9 @@
 @media (max-width: 800px) {
   .armenia-top { flex-direction: column; gap: 12px; }
   .armenia-region-picker { width: 100%; }
-  .armenia-stage { padding: 0 14px 18px; min-height: 0; }
+  .armenia-stage { display: block; padding: 0 14px 18px; min-height: 0; }
   .armenia-geography { min-height: 0; max-height: 480px; margin: 0 auto; }
-  .armenia-card, .armenia-empty { position: relative; inset: auto; width: 100%; }
+  .armenia-card, .armenia-empty { position: relative; inset: auto; width: 100%; margin-top: 0; }
   .armenia-card { padding: 20px; }
   .armenia-card h5 { margin-bottom: 10px; }
   .armenia-plot { max-height: 155px; }
