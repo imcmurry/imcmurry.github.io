@@ -196,6 +196,12 @@ window.SITE = {
       meta: `Aug. 2019 to May 2023 &middot; GPA 3.77 / 4.00`,
       courses: ``,
     },
+    {
+      school: `Honors & recognition`,
+      degree: `<strong>Navy and Marine Corps Achievement Medal</strong> (2026)<br>Recognized for meritorious achievement and significant impact beyond the expectations of grade and billet while serving as Officer in Charge, Korea Logistics Liaison Detachment.<br><br><strong>Dean's List, Emory University</strong> (Fall 2022; Spring 2023).`,
+      meta: ``,
+      courses: ``,
+    },
   ],
 
   skills: [
@@ -203,7 +209,6 @@ window.SITE = {
     { group: `Machine learning and NLP`, items: `Transformer fine-tuning (cross-encoders, sentence-transformers), pseudo-labeling and distillation, representation learning, embedding-space evaluation, LLM-assisted extraction with controlled prompts.` },
     { group: `Engineering`, items: `Python, SQL, relational schema design, data pipelines, API integration, KPI dashboards, Google Cloud Translation.` },
     { group: `Languages`, items: `English (native), Portuguese and Spanish (conversational).` },
-    { group: `Honors & recognition`, items: `<strong>Navy and Marine Corps Achievement Medal</strong> (2026), awarded for service as Officer in Charge, Korea Logistics Liaison Detachment.<br><strong>Dean's List, Emory University</strong> (Fall 2022; Spring 2023).` },
   ],
 
   /* ---------- Background ---------- */
