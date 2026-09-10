@@ -31,3 +31,4 @@
 .demo-key-other { background: var(--accent); }
 .demo-key-review { background: var(--ink); border-radius: 0; transform: rotate(45deg); }
 @media (max-width: 700px) { .demo-layout { grid-template-columns: minmax(0, 1fr); gap: 24px; } }
+@media (max-width: 420px) { .demo-score-row { flex-direction: column; gap: 8px; } }
