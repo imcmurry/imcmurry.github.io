@@ -29,7 +29,6 @@ export async function mount(root) {
     apiBase = url.href.replace(/\/$/, "");
   }
   root.innerHTML = `
-    <p class="demo-intro">Can a review reveal whether guests connect? ${apiBase ? "Try an example or write your own." : "Explore three example reviews below."}</p>
     <div class="demo-layout">
       <div>
         <form class="demo-form">
@@ -41,12 +40,9 @@ export async function mount(root) {
         <div class="demo-examples"><span>Try:</span></div>
         <p id="demo-status" class="demo-status" role="status" aria-live="polite"></p>
         <section class="demo-result" aria-label="Model result" aria-live="polite" hidden>
-          <div class="demo-score-row"><span>Social atmosphere signal</span><output class="demo-score"></output></div>
+          <div class="demo-score-row"><span class="demo-classification"></span><output class="demo-score"></output></div>
           <div class="demo-meter" aria-hidden="true"><div class="demo-fill"></div><span class="demo-threshold"></span></div>
           <div class="demo-scale"><span>Less social signal</span><span>More social signal</span></div>
-          <p class="demo-interpretation"></p>
-          <p class="demo-note demo-boundary"></p>
-          <p class="demo-note">The percentage is the classifier’s social-class score. It is not a hostel rating or a calibrated likelihood of meeting people. A review can be positive without describing guest interaction.</p>
         </section>
         <p class="demo-note demo-privacy"></p>
       </div>
@@ -68,7 +64,7 @@ export async function mount(root) {
   get(".demo-map-caption").textContent = `${map.points.length.toLocaleString()} reference dots sampled from ${map.referenceCount.toLocaleString()} human-labeled reviews. The map stays fixed as you explore.`;
   get(".demo-privacy").textContent = apiBase
     ? "When you select Analyze review, your text is sent to the demo server for scoring. Avoid entering personal information."
-    : "Live text analysis is not connected yet. The examples show saved outputs from the actual model.";
+    : "";
   const ns = "http://www.w3.org/2000/svg";
   const svg = (tag, attributes) => {
     const node = document.createElementNS(ns, tag);
@@ -104,11 +100,10 @@ export async function mount(root) {
     get(".demo-score").textContent = score > 99.9 ? ">99.9%" : score < .1 ? "<0.1%" : `${score.toFixed(1)}%`;
     get(".demo-fill").style.width = `${score}%`;
     get(".demo-threshold").style.left = `${data.threshold * 100}%`;
-    get(".demo-boundary").textContent = `The marker shows the saved classification threshold (${(data.threshold * 100).toFixed(1)}%).`;
     const above = data.probability >= data.threshold;
-    get(".demo-interpretation").textContent = Math.abs(data.probability - data.threshold) < .1
-      ? `Close to the threshold · classified ${above ? "social" : "non-social"}`
-      : above ? "Social signal · language associated with guest interaction" : "Little social signal · guest interaction is not clearly described";
+    get(".demo-classification").textContent = above
+      ? "This review was classified as describing a social environment"
+      : "This review was not classified as describing a social environment";
     const [cx, cy] = position(data.point);
     const marker = get(".demo-marker");
     marker.replaceChildren();
@@ -142,7 +137,7 @@ export async function mount(root) {
     event.preventDefault();
     reset();
     const text = input.value.trim();
-    if (!apiBase) { status.textContent = "Live text analysis is not connected yet. Choose a saved example below."; return; }
+    if (!apiBase) { status.textContent = "The model is temporarily unavailable. Please try again later."; return; }
     if (text.length < 10 || text.length > MAX_CHARS) { status.textContent = "Enter a review of 10–1,200 characters."; return; }
     const current = requestId;
     controller = new AbortController();
