@@ -123,14 +123,14 @@ window.SITE = {
       year: `2026`,
       kind: `Conference presentation`,
       title: `Beyond the Star Rating: Teaching a Transformer to Read the Social Atmosphere in 162,000 Hostel Reviews`,
-      venue: `<strong>McMurry, I. W.</strong> Georgia Tech OMS Analytics Conference, October 8&ndash;9, 2026 (virtual). Accepted.`,
+      venue: `<strong>McMurry, I. W.</strong> Presented October 8, 2026, at the Georgia Tech OMS Analytics Conference (virtual).`,
       links: [],
     },
   ],
 
   /* ---------- Experience (newest first) ---------- */
   experience: {
-    intro: `I studied finance and information systems at Emory University before commissioning as an officer in the U.S. Marine Corps. Since then, my work has developed along two parallel tracks: logistics and operations roles of increasing responsibility in the Marine Corps, and graduate study, research, and consulting in statistics, machine learning, and data engineering. Each has built a different part of how I work. The data side is where I learned to turn ambiguous questions into measurable problems, develop statistical and machine-learning models, and build the engineering needed to make them work at scale; the Marine Corps is where I learned to lead people, make decisions under constraint, and plan and execute complex operations.`,
+    intro: `I studied finance and information systems at Emory University before commissioning as an officer in the U.S. Marine Corps. I grew up in Luxembourg and attended an international school, and my later work in Japan and South Korea has deepened my experience collaborating across cultures. Since then, my work has developed along two parallel tracks: logistics and operations roles of increasing responsibility in the Marine Corps, and graduate study, research, and consulting in statistics, machine learning, and data engineering. Each has built a different part of how I work. The data side is where I learned to turn ambiguous questions into measurable problems, develop statistical and machine-learning models, and build the engineering needed to make them work at scale; the Marine Corps is where I learned to lead people, make decisions under constraint, and plan and execute complex operations.`,
     roles: [
       {
         when: `June 2025 to present`,
@@ -185,6 +185,12 @@ window.SITE = {
   /* ---------- Education & skills ---------- */
   education: [
     {
+      school: `Trinity College Dublin`,
+      degree: `PhD in Statistics`,
+      meta: `Incoming, September 2027`,
+      courses: ``,
+    },
+    {
       school: `Georgia Institute of Technology`,
       degree: `M.S. in Analytics, Computational Data Analytics track`,
       meta: `Aug. 2024 to Dec. 2026 (expected) &middot; GPA 4.00 / 4.00`,
@@ -228,5 +234,5 @@ window.SITE = {
   },
 
   /* ---------- Footer ---------- */
-  footer: { left: `&copy; 2026 Ian W. McMurry`, right: `Last updated September 2026` },
+  footer: { left: `&copy; 2026 Ian W. McMurry`, right: `Last updated November 2026` },
 };
