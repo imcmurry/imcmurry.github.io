@@ -221,7 +221,11 @@ strong { font-weight: 600; }
 
 /* education + skills */
 .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
-.edu { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+.edu { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; }
+.edu li.edu-with-logo { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: start; gap: 16px; }
+.edu .edu-logo { width: 72px; height: 72px; object-fit: contain; display: block; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
+.edu .edu-copy { min-width: 0; }
+.edu li:not(.edu-with-logo) { border-top: 1px solid var(--rule); padding-top: 16px; }
 .edu h3 { font-size: 1.08rem; font-family: var(--sans); font-weight: 600; }
 .edu .deg { color: var(--ink-2); font-size: 0.97rem; }
 .edu .meta { color: var(--ink-3); font-size: 0.88rem; margin-top: 2px; font-variant-numeric: tabular-nums; }
@@ -266,6 +270,8 @@ footer .container { display: flex; justify-content: space-between; flex-wrap: wr
   .nav ul a { white-space: nowrap; font-size: 0.8rem; }
 }
 @media (max-width: 520px) {
+  .edu li.edu-with-logo { grid-template-columns: 60px minmax(0, 1fr); gap: 12px; }
+  .edu .edu-logo { width: 60px; height: 60px; }
   body { font-size: 16px; }
   .container { padding: 0 20px; }
   .intro { padding: 40px 0 40px; }
@@ -406,7 +412,10 @@ footer .container { display: flex; justify-content: space-between; flex-wrap: wr
     + '<div class="section-head"><h2>Education &amp; skills</h2></div><div class="two-col">'
     + '<div><div class="col-title">Education</div><ul class="edu">'
     + S.education.map(function (e) {
-      return "<li><h3>" + e.school + '</h3><div class="deg">' + e.degree + '</div><div class="meta">' + e.meta + "</div>" + (e.courses ? '<p class="courses">' + e.courses + "</p>" : "") + "</li>";
+      return "<li" + (e.logo ? ' class="edu-with-logo"' : "") + ">"
+        + (e.logo ? '<img class="edu-logo" src="' + e.logo + '" alt="" width="72" height="72" loading="lazy" decoding="async">' : "")
+        + '<div class="edu-copy"><h3>' + e.school + '</h3><div class="deg">' + e.degree + '</div><div class="meta">' + e.meta + "</div>"
+        + (e.courses ? '<p class="courses">' + e.courses + "</p>" : "") + "</div></li>";
     }).join("") + "</ul></div>"
     + '<div><div class="col-title">Skills</div><div class="skills">'
     + S.skills.map(function (s) { return "<dl><dt>" + s.group + "</dt><dd>" + s.items + "</dd></dl>"; }).join("")
