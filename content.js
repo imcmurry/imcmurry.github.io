@@ -187,18 +187,21 @@ window.SITE = {
   education: [
     {
       school: `Trinity College Dublin`,
+      logo: `assets/edu-trinity.webp`,
       degree: `PhD in Statistics`,
       meta: `Incoming, September 2027`,
       courses: ``,
     },
     {
       school: `Georgia Institute of Technology`,
+      logo: `assets/edu-georgia-tech.webp`,
       degree: `M.S. in Analytics, Computational Data Analytics track`,
       meta: `Aug. 2024 to Dec. 2026 (expected) &middot; GPA 4.00 / 4.00`,
       courses: `Bayesian Statistics, Statistical Modeling and Regression Analysis, Computational Data Analysis, Simulation and Modeling for Engineering and Science, Applied Natural Language Processing.`,
     },
     {
       school: `Emory University`,
+      logo: `assets/edu-emory.webp`,
       degree: `B.B.A. in Finance and Information Systems`,
       meta: `Aug. 2019 to May 2023 &middot; GPA 3.77 / 4.00`,
       courses: ``,
