@@ -221,11 +221,11 @@ strong { font-weight: 600; }
 
 /* education + skills */
 .two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; }
-.edu { list-style: none; margin: 0; padding: 0; display: grid; gap: 24px; }
+.edu { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.edu li + li { border-top: 1px solid var(--rule); margin-top: 20px; padding-top: 20px; }
 .edu li.edu-with-logo { display: grid; grid-template-columns: 72px minmax(0, 1fr); align-items: start; gap: 16px; }
-.edu .edu-logo { width: 72px; height: 72px; object-fit: contain; display: block; background: #fff; border: 1px solid var(--rule); border-radius: 4px; }
+.edu .edu-logo { width: 72px; height: 72px; object-fit: contain; display: block; background: #fff; }
 .edu .edu-copy { min-width: 0; }
-.edu li:not(.edu-with-logo) { border-top: 1px solid var(--rule); padding-top: 16px; }
 .edu h3 { font-size: 1.08rem; font-family: var(--sans); font-weight: 600; }
 .edu .deg { color: var(--ink-2); font-size: 0.97rem; }
 .edu .meta { color: var(--ink-3); font-size: 0.88rem; margin-top: 2px; font-variant-numeric: tabular-nums; }
