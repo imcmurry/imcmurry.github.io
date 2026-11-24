@@ -198,7 +198,8 @@ strong { font-weight: 600; }
 .pubs .kind { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px; }
 
 /* experience: a timeline spine with a dot per role */
-.thread { max-width: 66ch; font-size: 1.06rem; margin-bottom: 36px; }
+.experience-intro { max-width: 66ch; margin-bottom: 36px; }
+.experience-intro .thread { font-size: 1.06rem; }
 .roles { list-style: none; margin: 0; padding: 0; display: grid; gap: 30px; }
 .roles > li { position: relative; display: grid; grid-template-columns: 184px 32px minmax(0, 1fr); grid-template-areas: "when mark body"; gap: 0; }
 .roles > li:not(:last-child)::after { content: ""; position: absolute; left: 199px; top: 16px; bottom: -30px; width: 2px; background: var(--rule); }
@@ -390,7 +391,7 @@ footer .container { display: flex; justify-content: space-between; flex-wrap: wr
   /* experience */
   html += '<section class="section" id="experience"><div class="container">'
     + '<div class="section-head"><h2>Experience</h2></div>'
-    + (S.experience.intro ? '<p class="thread">' + S.experience.intro + "</p>" : "")
+    + (S.experience.intro ? '<div class="experience-intro">' + paras(Array.isArray(S.experience.intro) ? S.experience.intro : [S.experience.intro], "thread") + "</div>" : "")
     + '<ol class="roles">';
   S.experience.roles.forEach(function (r) {
     html += '<li><div class="when">' + r.when + (r.place ? '<span class="place">' + r.place + "</span>" : "") + "</div>"
