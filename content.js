@@ -20,8 +20,8 @@ window.SITE = {
     { label: `ACL Anthology`, href: `https://doi.org/10.18653/v1/2026.wassa-1.3` },
   ],
   documents: [
-    { label: `Academic CV`, href: `files/Ian_McMurry_CV.pdf`, primary: true },
-    { label: `Data science resume`, href: `files/Ian_McMurry_Resume.pdf` },
+    { label: `2-page CV`, href: `files/Ian_McMurry_CV.pdf`, primary: true },
+    { label: `1-page Résumé`, href: `files/Ian_McMurry_Resume.pdf` },
   ],
 
   /* ---------- Research ---------- */
@@ -240,7 +240,7 @@ window.SITE = {
     ways: [
       { key: `Email`, html: `<a href="mailto:ian.mcmurry01@gmail.com">ian.mcmurry01@gmail.com</a> &middot; <a href="mailto:imcmurry3@gatech.edu">imcmurry3@gatech.edu</a>` },
       { key: `LinkedIn`, html: `<a href="https://www.linkedin.com/in/ian-mcmurry">linkedin.com/in/ian-mcmurry</a>` },
-      { key: `Documents`, html: `<a href="files/Ian_McMurry_CV.pdf">Academic CV</a> &middot; <a href="files/Ian_McMurry_Resume.pdf">Data science resume</a>` },
+      { key: `Documents`, html: `<a href="files/Ian_McMurry_CV.pdf">2-page CV</a> &middot; <a href="files/Ian_McMurry_Resume.pdf">1-page Résumé</a>` },
     ],
   },
 
